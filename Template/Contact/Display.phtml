@@ -1,0 +1,43 @@
+<?php
+use Framework\Tools\Helper\RoutesHelper;
+?>
+
+<section class="l-content content">
+    <section class="contact">
+        <h1 class="contact__title">Restons en contact !</h1>
+        <section class="contact__info">
+            <p>Une suggestion, un problème ? N'hésitez pas à nous contacter.</p>
+        </section>
+
+        <section class="contact__wrapper">  
+            <form method="POST" action="<?= RoutesHelper::Path("ContactSend"); ?>" enctype="multipart/form-data">
+                <div class="contact__inputs-wrapper">
+                    <div class="contact__inputs-wrapper__input">
+                        <div class="input">
+                            <input type="text" id="lastname" name="lastname" placeholder="Nom" required autofocus>
+                        </div>
+                    </div>
+                    <div class="contact__inputs-wrapper__input">
+                        <div class="input">
+                            <input type="text" id="firstname" name="firstname" placeholder="Prénom" required>
+                        </div>
+                    </div>
+                    <div class="contact__inputs-wrapper__input">
+                        <div class="input">
+                            <input type="email" id="email" name="email" placeholder="Adresse e-mail" required>
+                        </div>
+                    </div>
+                    <div class="contact__inputs-wrapper__input">
+                        <div class="input">
+                            <textarea id="content" name="content" placeholder="Description" rows="6" required></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contact__buttons-wrapper">
+                    <button type="submit" class="button contained-button">Envoyer</button>
+                </div>
+            </form>
+        </section>
+    </section>
+</section>

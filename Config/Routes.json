@@ -1,0 +1,50 @@
+[
+	{
+		"Path": "/"
+		, "Controller": "Home\\HomeController"
+		, "Action": "Display"
+		, "Name": "DisplayHome"
+	}
+	, {
+		"Path": "/Contact"
+		, "Controller": "Contact\\ContactController"
+		, "Action": "Display"
+		, "Name": "DisplayContact"
+	}
+	, {
+		"Path": "/Contact/Send"
+		, "Controller": "Contact\\ContactController"
+		, "Action": "Send"
+		, "Name": "ContactSend"
+	}
+	, {
+		"Path": "/User/Login"
+		, "Controller": "User\\UserController"
+		, "Action": "Login"
+		, "Name": "UserLogin"
+	}
+	, {
+		"Path": "/User/Logout"
+		, "Controller": "User\\UserController"
+		, "Action": "Logout"
+		, "Name": "UserLogout"
+	}
+	, {
+		"Path": "/Policy/Privacy"
+		, "Controller": "Policy\\PrivacyController"
+		, "Action": "Display"
+		, "Name": "DisplayPrivacy"
+	}
+	, {
+		"Path": "/Policy/Terms"
+		, "Controller": "Policy\\TermsController"
+		, "Action": "Display"
+		, "Name": "DisplayTerms"
+	}
+	, {
+		"Path": "/Error"
+		, "Controller": "Error\\ErrorController"
+		, "Action": "Display"
+		, "Name": "DisplayError"
+	}
+]

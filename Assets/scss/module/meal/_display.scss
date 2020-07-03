@@ -1,0 +1,329 @@
+.dm
+{
+    &__form
+    {
+        display: block;
+        width: 100%;
+        padding: 1em;
+        margin-top: 1.5em;
+        margin-bottom: 1.5em;
+        border: 2px solid $main-color;
+        border-radius: 1em;
+
+        &__component
+        {
+            display: inline;
+            margin-right: 2em;
+            font-family: $text-font;
+            font-size: 1.2em;
+        }
+
+        &__buttons
+        {
+            display: inline;
+        }
+    }
+
+    &__info
+    {
+        background-color: $instagram-color;
+        color: $main-light;
+
+        font-family: $text-font;
+        font-size: 1.2em;
+        
+        margin-top: 1em;
+        margin-bottom: 1em;
+        padding: 2em;
+
+        position: relative;
+
+        & > ul
+        {
+            position: relative;
+            display: inline;
+
+            &::before
+            {
+                font-family: "Font Awesome 5 Free"; 
+                font-weight: 900;
+                font-size: 4em;
+                content: "\f071";
+                position: absolute;
+                left: 0;
+            }
+
+            & > li
+            {
+                & > p
+                {
+                    position: relative;
+                    left: 6em;
+
+                    &:not(:first-child)
+                    {
+                        margin-top: 0.3em;
+                    }
+                }
+            }
+        }
+
+        /* alert */
+        &.alert
+        {
+            background-color: $danger-color;
+
+            & > ul::before
+            {
+                content: "\f071";
+                bottom: -0.85em;
+            }
+
+            & > form
+            {
+                display: inline;
+                position: absolute;
+                bottom: 2em;
+                right: 4em;
+            }
+        }
+
+        /* success */
+        &.success
+        {
+            background-color: $success-color;
+
+            & > ul::before
+            {
+                content: "\f00c";
+                bottom: -0.7em;
+            }
+
+            & > form
+            {
+                display: inline;
+                position: absolute;
+                bottom: 1.3em;
+                right: 4em;
+            }
+        }
+    }
+
+    &__item
+    {
+        width: 100%;
+        font-family: $title-font;
+        
+        & td
+        {
+            margin-top: 1%;
+            margin-bottom: 1%;
+            margin-left: 1%;
+            margin-right: 1%;
+            height: 100px;
+            vertical-align: middle;
+            display: inline-block;
+            text-align: center;
+            box-shadow: $shadow;
+
+            &:first-child
+            {
+                margin-left: 0;
+            }
+
+            &:last-child
+            {
+                margin-right: 0;
+            }
+        }
+
+        &__date
+        {  
+            width: 26%;
+            background-color: $main-color;
+            font-size: 1.2em;
+            color: $main-light;
+            padding-top: 1em;
+        }
+
+        &__date--monday
+        {
+            @extend .dm__item__date;
+
+            background-color: $monday-color;
+        }
+
+        &__date--tuesday
+        {
+            @extend .dm__item__date;
+
+            background-color: $tuesday-color;
+        }
+
+        &__date--wednesday
+        {
+            @extend .dm__item__date;
+
+            background-color: $wednesday-color;
+        }
+
+        &__date--thursday
+        {
+            @extend .dm__item__date;
+
+            background-color: $thursday-color;
+        }
+
+        &__date--friday
+        {
+            @extend .dm__item__date;
+
+            background-color: $friday-color;
+        }
+
+        &__date--saturday
+        {
+            @extend .dm__item__date;
+
+            background-color: $saturday-color;
+        }
+
+        &__date--sunday
+        {
+            @extend .dm__item__date;
+
+            background-color: $sunday-color;
+        }
+
+        &__meal
+        {
+            width: 35%;
+            border: 2px solid $main-color;
+            display: flex;
+            flex-direction: column;
+
+            &__header
+            {
+                display: block;
+                background-color: $main-color;
+                font-size: 1.2em;
+                color: $main-light;
+                padding-top: 0.3em;
+                padding-bottom: 0.3em;
+            }
+
+            &__content
+            {
+                padding-top: 1em;
+                display: block;
+                font-size: 1em;
+                font-family: $text-font;
+
+                & a
+                {
+                    color: $main-color;
+                    border-bottom: 1px solid $main-color;
+                    padding-bottom: 0;
+                }
+            }
+        }
+
+        &__meal--monday
+        {
+            @extend .dm__item__meal;
+
+            border-color: $monday-color;
+
+            &__header
+            {
+                @extend .dm__item__meal__header;
+
+                background-color: $monday-color;
+            }
+        }
+
+        &__meal--tuesday
+        {
+            @extend .dm__item__meal;
+
+            border-color: $tuesday-color;
+
+            &__header
+            {
+                @extend .dm__item__meal__header;
+
+                background-color: $tuesday-color;
+            }
+        }
+
+        &__meal--wednesday
+        {
+            @extend .dm__item__meal;
+
+            border-color: $wednesday-color;
+
+            &__header
+            {
+                @extend .dm__item__meal__header;
+
+                background-color: $wednesday-color;
+            }
+        }
+
+        &__meal--thursday
+        {
+            @extend .dm__item__meal;
+
+            border-color: $thursday-color;
+
+            &__header
+            {
+                @extend .dm__item__meal__header;
+
+                background-color: $thursday-color;
+            }
+        }
+
+        &__meal--friday
+        {
+            @extend .dm__item__meal;
+
+            border-color: $friday-color;
+
+            &__header
+            {
+                @extend .dm__item__meal__header;
+
+                background-color: $friday-color;
+            }
+        }
+
+        &__meal--saturday
+        {
+            @extend .dm__item__meal;
+
+            border-color: $saturday-color;
+
+            &__header
+            {
+                @extend .dm__item__meal__header;
+
+                background-color: $saturday-color;
+            }
+        }
+
+        &__meal--sunday
+        {
+            @extend .dm__item__meal;
+
+            border-color: $sunday-color;
+
+            &__header
+            {
+                @extend .dm__item__meal__header;
+
+                background-color: $sunday-color;
+            }
+        }
+    }
+}

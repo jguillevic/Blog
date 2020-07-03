@@ -1,0 +1,132 @@
+.login
+{
+    width: 100%;
+
+    display: block;
+
+    margin-top: 1em;
+
+    &__wrapper
+    {
+        @extend .wrapper-row-center;
+
+        & > form
+        {
+            width: 31%;
+        }
+    }
+
+    &__title
+    {
+        display: block;
+
+        text-align: center;
+
+        color: $main-gray;
+        font-family: $title-font;
+        font-weight: 700;
+        font-size: 2.2em;
+
+        margin-bottom: 1.5em;
+    }
+
+    &__inputs-wrapper
+    {
+        &__input:not(:last-child)
+        {
+            margin-bottom: 3em;
+        }
+    }
+
+    &__helpers-wrapper
+    {
+        @extend .wrapper-row-spacebetween;
+
+        margin-top: 1em;
+
+        position: relative;
+
+        &__forgotten-password
+        {
+            color: $main-dark;
+            font-family: $title-font;
+            font-weight: 400;
+            font-style: italic;
+            font-size: 0.9em;
+
+            position: absolute;
+
+            right: 0;
+            top: 0.2em;
+        }
+    }
+
+    &__buttons-wrapper
+    {
+        @extend .wrapper-row-spacebetween;
+
+        margin-top: 5em;
+    }
+
+    &__separator
+    {
+        width: 100%;
+
+        display: flex;
+        flex-direction: row;
+
+        position: relative;
+
+        margin-top: 2em;
+        margin-bottom: 2em;
+
+        &__border
+        {
+            position: absolute;
+
+            width: 45%;
+
+            display: inline-block;
+
+            border-top: 0.1em $main-gray solid;
+
+            &-left
+            {
+                left: 0;
+            }
+
+            &-right
+            {
+                right: 0;
+            }
+        }
+
+        &__text
+        {
+            position: absolute;
+
+            left: 45%;
+            top: -0.6em;
+
+            width: 10%;
+
+            display: inline-block;
+
+            text-align: center;
+
+            color: $main-gray;
+            font-family: $title-font;
+            font-weight: 400;
+            font-style: regular;
+            font-size: 1em;
+        }
+    }
+
+    &__social-buttons-wrapper
+    {
+        & > button:not(:last-child)
+        {
+            margin-bottom: 1em;
+        }
+    }
+}

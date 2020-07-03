@@ -1,0 +1,56 @@
+<?php
+use \Framework\Tools\Helper\RoutesHelper;
+use \Tools\Helper\UserHelper;
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>MyMeals</title>
+		<link rel="icon" href="../Assets/images/icons/watermelon.png">
+		<link rel="stylesheet" type="text/css" href="../Assets/css/style.css"> 	
+		<link href="https://fonts.googleapis.com/css?family=Montserrat:200,300,400,500,600,700|Roboto:400,700" rel="stylesheet">
+		<script type="text/javascript" src="../Assets/js/jquery/jquery-3.3.1.min.js"></script>
+		<script type="text/javascript" src="../Assets/js/jquery/jquery-migrate-1.4.1.min.js"></script>
+	</head>
+	<body>
+		<header class="l-header header">
+			<nav class="nav">
+				<section class="nav__wrapper">
+					<span class="nav__brand">
+						<a href="<?= RoutesHelper::Path("DisplayHome"); ?>" tabindex="0">Le blog healthy de Khany</a>
+					</span>
+
+					<span class="nav__menu-user-wrapper">
+						<span class="nav__menu">
+	<?php if (UserHelper::IsLogin()): ?>
+							
+	<?php endif; ?>
+						</span>
+
+						<span class="nav__user">
+
+						</span>
+					</span>
+				</section>
+			</nav>
+		</header>
+		<main class="l-main main">
+			<?php
+				if (isset($this->content))
+					include($this->content);
+			?>
+		</main>
+		<footer class="l-footer footer">
+			<ul>
+				<li><a href="<?= RoutesHelper::Path("DisplayPrivacy"); ?>">Données personnelles</a></li>
+				<li><a href="<?= RoutesHelper::Path("DisplayTerms"); ?>">Mentions légales</a></li>
+				<li><a href=""></a>Cookies</li>
+				<li><a href="<?= RoutesHelper::Path("DisplayContact"); ?>">Contact</a></li>
+			</ul>
+		</footer>
+	</body>
+
+	<script type="text/javascript" src="../Assets/js/module/layout.js"></script>
+</html>

@@ -1,0 +1,39 @@
+.dsl
+{
+    &__title
+    {
+        font-family: $title-font;
+        letter-spacing: -2px;
+        text-align: center;
+        font-weight: 700;
+    }
+
+    &__form
+    {
+        display: block;
+        width: 100%;
+        padding: 1em;
+        margin-top: 1.5em;
+        margin-bottom: 1.5em;
+        border: 2px solid $main-color;
+
+        &__component
+        {
+            display: inline;
+            margin-right: 2em;
+            font-family: $text-font;
+            font-size: 1.2em;
+        }
+
+        &__buttons
+        {
+            display: inline;
+        }
+    }
+
+    &__item
+    {
+        margin-top: 0.5em;
+        margin-bottom: 0.5em;
+    }
+}

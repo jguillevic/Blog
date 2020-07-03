@@ -1,0 +1,241 @@
+.nav
+{
+	width: 100%;
+	display: block;
+
+	&__wrapper
+	{
+		width: 100%;
+
+		background-color: $main-light;
+
+		padding-top: 2em;
+		padding-bottom: 2em;
+		padding-left: 8%;
+		padding-right: 8%;
+
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+	}
+
+	&__brand
+	{
+		color: $main-dark;
+		font-family: $title-font;
+		font-weight: 700;
+		font-size: 1em;
+
+		text-align: left;
+	}
+
+	&__menu-user-wrapper
+	{
+		text-align: right;
+	}
+
+	&__menu
+	{
+		color: $main-dark;
+		font-family: $title-font;
+		font-weight: 400;
+		font-size: 1em;
+
+		&__item
+		{
+			display: inline-block;
+
+			position: relative;
+
+			padding-right: 1.5em;
+
+			&::after
+			{
+				content: "";
+				background-image: url("..//images//icons//triangle-down.svg");
+				background-size: 100%;
+				height: 1em;
+				width: 1em;
+				display: inline-block;
+				position: absolute;
+				right: 0em;
+				top: 0.1em;
+				transition: transform 0.5s ease;
+			}
+
+			&.open::after
+			{
+				transform: rotate(180deg);
+				transform-origin: 50% 50%;
+			}
+
+			&:hover
+			{
+				cursor: pointer;
+			}
+
+			&:not(:last-child)
+			{
+				margin-right: 4em;
+			}
+
+			&:last-child
+			{
+				margin-right: 8em;
+			}
+
+			& > span
+			{
+				pointer-events: none;
+			}
+		}
+
+		&__sub-item
+		{
+			&__wrapper
+			{
+				position: absolute;
+				top: 1.8em;
+
+				z-index: 1;
+
+				text-align: left;
+
+				background-color: $main-light;
+				box-shadow: 0 0 0.5em rgba($color: $main-gray, $alpha: 0.5);
+
+				& > ul
+				{
+					color: $main-dark;
+					font-family: $title-font;
+					font-weight: 400;
+					font-size: 1em;
+
+					& > li
+					{
+						transition: background-color 0.3s ease, color 0.3s ease;
+
+						&:hover
+						{
+							background-color: $main-color;
+							color: $main-light;
+						}
+
+						& > a
+						{
+							display: block;
+							
+							padding: 0.7em;
+						}
+					}
+				}
+			}
+		}
+	}
+
+	&__user
+	{
+		color: $main-dark;
+		font-family: $title-font;
+		font-weight: 400;
+		font-size: 1em;
+		position: relative;
+		margin-left: 1.5em;
+
+		& > a:not(:last-child)
+		{
+			margin-right: 1em;
+		}
+
+		&__avatar
+		{
+			position: absolute;
+			top: -0.8em;
+			left: -2em;
+
+			width: 3em;
+			height: 3em;
+			
+			border-radius: 50%;
+
+			box-shadow: 0 0 0.5em rgba($color: $main-gray, $alpha: 0.7);
+
+			&:hover
+			{
+				cursor: pointer;
+			}
+		}
+
+		&__avatar-tooltip
+		{
+			width: 20em;
+
+			position: absolute;
+			z-index: 2;
+			top: 3em;
+			right: -1.1em;
+
+			border: 0.1em rgba($color: $main-gray, $alpha: 0.5) solid;
+
+			box-shadow: 0 0 0.5em rgba($color: $main-gray, $alpha: 0.7);
+
+			&__header
+			{
+				padding: 1em;
+
+				background-color: $main-color;
+
+				& > section
+				{
+					@extend .wrapper-row-center;
+
+					& > img
+					{
+						display: block;
+
+						margin: 0.2em;
+
+						width: 7em;
+						height: 7em;
+		
+						border-radius: 50%;
+						border: 0.2em $main-light solid;
+
+						box-shadow: 0 0 0.5em rgba($color: $main-gray, $alpha: 0.9);
+
+						background-color: $main-light;
+					}
+				}
+
+				& > p
+				{
+					color: $main-light;
+					font-family: $title-font;
+					font-weight: 500;
+					font-size: 1.5em;
+
+					display: block;
+
+					margin-left: auto;
+					margin-right: auto;
+					margin-top: 0.5em;
+					margin-bottom: 0.1em;
+
+					text-align: center;
+				}
+			}
+
+			&__footer
+			{	
+				@extend .wrapper-row-spacebetween;
+
+				background-color: $main-light;
+
+				padding-top: 0.8em;
+				padding-bottom: 0.8em;
+				padding-left: 0.8em;
+				padding-right: 0.8em; 
+			}
+		}
+	}
+}

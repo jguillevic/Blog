@@ -1,0 +1,74 @@
+.information
+{
+    display: block;
+
+    width: 100%;
+
+    padding-top: 5em;
+
+    &__wrapper
+    {
+        @extend .wrapper-column-center;
+
+        width: 100%;
+
+        text-align: center;
+
+        & > h1
+        {
+            color: $main-dark;
+            font-family: $title-font;
+            font-size: 4em;
+            font-weight: 700;
+
+            margin: 0;
+            margin-bottom: 0.8em;
+            padding: 0;
+
+            display: block;
+        }
+        
+        & > p 
+        {
+            color: $main-dark;
+            font-family: $title-font;
+            font-size: 1.5em;
+            font-weight: 400;
+
+            margin: 0;
+            margin-bottom: 0.4em;
+            padding: 0;
+
+            display: block;
+        }
+
+        & > form
+        {
+            margin-top: 3em;
+        }
+    }
+
+    &__icon--success
+    {
+        width: 8em;
+        height: 8em;
+
+        display: block;
+
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 2em;
+    }
+
+    &__icon--error
+    {
+        width: 8em;
+        height: 8em;
+
+        display: block;
+
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 2em;
+    }
+}

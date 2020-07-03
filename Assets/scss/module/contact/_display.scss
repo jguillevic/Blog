@@ -1,0 +1,62 @@
+.contact
+{
+    width: 100%;
+
+    display: block;
+
+    margin-top: 0.5em;
+
+    &__wrapper
+    {
+        @extend .wrapper-row-center;
+
+        & > form
+        {
+            width: 40%;
+        }
+    }
+
+    &__title
+    {
+        display: block;
+
+        text-align: center;
+
+        color: $main-gray;
+        font-family: $title-font;
+        font-weight: 700;
+        font-size: 2.2em;
+
+        margin-top: 1.5em;
+        margin-bottom: 1.5em;
+    }
+
+    &__info
+    {
+        display: block;
+
+        text-align: center;
+
+        color: $main-dark;
+        font-family: $title-font;
+        font-weight: 600;
+        font-size: 1.1em;
+
+        margin-bottom: 3em;
+    }
+
+    &__inputs-wrapper
+    {
+        &__input
+        {
+            margin-bottom: 3em;
+        }
+    }
+
+    &__buttons-wrapper
+    {
+        @extend .wrapper-row-center;
+
+        margin-top: 3em;
+    }
+}
