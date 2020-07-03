@@ -32,18 +32,13 @@ class UserHelper
 
 		return true;
 	}
-	
+
 	public static function GetName()
 	{
-		if (self::IsWebsiteLogin())
+		if (self::IsLogin())
 		{
-			$wsUser = self::GetWebsiteUser();
-			return $wsUser->Login;
-		}
-		else if (self::IsFacebookLogin())
-		{
-			$fbUser = self::GetFacebookUser();
-			return $fbUser->FirstName;
+			$user = self::GetUser();
+			return $user->Login;
 		}
 
 		return null;
@@ -51,15 +46,10 @@ class UserHelper
 
 	public static function GetAvatarUrl()
 	{
-		if (self::IsWebsiteLogin())
+		if (self::IsLogin())
 		{
-			$wsUser = self::GetWebsiteUser();
-			return $wsUser->AvatarUrl;
-		}
-		else if (self::IsFacebookLogin())
-		{
-			$fbUser = self::GetFacebookUser();
-			return $fbUser->ProfilePictureUrl;
+			$user = self::GetUser();
+			return $user->AvatarUrl;
 		}
 		
 		return null;
