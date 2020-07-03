@@ -1,0 +1,6 @@
+Pour la mise en place, créer les variables d'environnement suivantes sur le serveur :
+- DBHost (obligatoire) : Nom de l'hôte hébergeant la BDD
+- DBName (obligatoire) : Nom de la BDD
+- DBLogin (obligatoire) : Login de connexion à la BDD
+- DBPwd (obligatoire) : Mot de passe de connexion à la BDD
+- DBEngine (obligatoire) : Moteur BDD (pgsql ou mysql)

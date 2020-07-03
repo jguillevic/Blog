@@ -18,16 +18,22 @@
 		, "Name": "ContactSend"
 	}
 	, {
-		"Path": "/User/Login"
-		, "Controller": "User\\UserController"
+		"Path": "/User/Admin/Login"
+		, "Controller": "Admin\\User\\UserController"
 		, "Action": "Login"
-		, "Name": "UserLogin"
+		, "Name": "AdminUserLogin"
 	}
 	, {
-		"Path": "/User/Logout"
-		, "Controller": "User\\UserController"
+		"Path": "/Admin/User/Login"
+		, "Controller": "Admin\\User\\UserController"
+		, "Action": "Login"
+		, "Name": "AdminUserLogin"
+	}
+	, {
+		"Path": "/Admin/User/Logout"
+		, "Controller": "Admin\\User\\UserController"
 		, "Action": "Logout"
-		, "Name": "UserLogout"
+		, "Name": "AdminUserLogout"
 	}
 	, {
 		"Path": "/Policy/Privacy"

@@ -1,13 +1,13 @@
 <?php
 
-namespace BLL\User;
+namespace BLL\Admin\User;
 
 use Framework\DAL\Database;
 use Framework\Tools\Error\ErrorManager;
-use DAL\User\WebsiteUserDAL;
-use Model\User\WebsiteUser;
+use DAL\Admin\User\UserDAL;
+use Model\Admin\User\User;
 
-class WebsiteUserBLL
+class UserBLL
 {
     public function IsLoginExists(string $login) : bool
     {
@@ -16,8 +16,8 @@ class WebsiteUserBLL
             $db = new Database();
             $db->BeginTransaction();
 
-            $wuDAL = new WebsiteUserDAL($db);
-            $isLoginExists = $wuDAL->IsLoginExists($login);
+            $uDAL = new UserDAL($db);
+            $isLoginExists = $uDAL->IsLoginExists($login);
 
             $db->Commit();
 
@@ -39,8 +39,8 @@ class WebsiteUserBLL
             $db = new Database();
             $db->BeginTransaction();
 
-            $wuDAL = new WebsiteUserDAL($db);
-            $isEmailExists = $wuDAL->IsEmailExists($login);
+            $uDAL = new UserDAL($db);
+            $isEmailExists = $uDAL->IsEmailExists($login);
 
             $db->Commit();
 
@@ -62,8 +62,8 @@ class WebsiteUserBLL
             $db = new Database();
             $db->BeginTransaction();
 
-            $wuDAL = new WebsiteUserDAL($db);
-            $isPasswordHashMatches = $wuDAL->IsPasswordHashMatches($login, $passwordHash);
+            $uDAL = new UserDAL($db);
+            $isPasswordHashMatches = $uDAL->IsPasswordHashMatches($login, $passwordHash);
 
             $db->Commit();
 
@@ -85,8 +85,8 @@ class WebsiteUserBLL
             $db = new Database();
             $db->BeginTransaction();
 
-            $wuDAL = new WebsiteUserDAL($db);
-            $isActivated = $wuDAL->IsActivated($login);
+            $uDAL = new UserDAL($db);
+            $isActivated = $uDAL->IsActivated($login);
 
             $db->Commit();
 
@@ -108,8 +108,8 @@ class WebsiteUserBLL
             $db = new Database();
             $db->BeginTransaction();
 
-            $wuDAL = new WebsiteUserDAL($db);
-            $result = $wuDAL->Activate($activationCode);
+            $uDAL = new UserDAL($db);
+            $result = $uDAL->Activate($activationCode);
 
             $db->Commit();
 
@@ -124,7 +124,7 @@ class WebsiteUserBLL
         }
     }
 
-    public function Register(WebsiteUser $websiteUser, string $passwordHash) : void
+    public function Register(User $user, string $passwordHash) : void
     {
         try
         {
@@ -132,22 +132,22 @@ class WebsiteUserBLL
             $db = new Database();
             $db->BeginTransaction();
 
-            $wuDAL = new WebsiteUserDAL($db);
-            $result = $wuDAL->Add($websiteUser, $passwordHash);
+            $uDAL = new UserDAL($db);
+            $result = $uDAL->Add($user, $passwordHash);
 
             // Envoi du mail.
             if ($result === true)
             {
-                $to = $websiteUser->GetEmail();
+                $to = $user->GetEmail();
                 $subject = "Activation de votre compte mymeals.fr";
-                $url = "https://mealsgenerator.local/User/Activate?code=" . $websiteUser->GetActivationCode();
+                $url = "https://mealsgenerator.local/User/Activate?code=" . $user->GetActivationCode();
                 $message = "
                 <html>
                     <head>
                         <title>Activation de votre compte MyMeals.fr</title>
                     </head>
                     <body>
-                        <p>Bienvenue " . $websiteUser->GetLogin() . " !</p>
+                        <p>Bienvenue " . $user->GetLogin() . " !</p>
                         <p>Nous vous remerçions d'avoir créé votre compte.</p>
                         <p>Afin de valider l'activation de votre compte, veuillez cliquer sur le lien ci-dessous :<br/>
                         <a href=\"" . $url . "\">" . $url . "</a></p>
@@ -158,7 +158,7 @@ class WebsiteUserBLL
 
                 $headers[] = "MIME-Version: 1.0";
                 $headers[] = "Content-type: text/html; charset=utf-8";
-                $headers[] = "To: " . $websiteUser->GetEmail();
+                $headers[] = "To: " . $user->GetEmail();
                 $headers[] = "From: mymealscontact@gmail.com";
 
                 if (mail($to, $subject, $message, implode("\r\n", $headers)) === false)
@@ -176,19 +176,19 @@ class WebsiteUserBLL
         }
     }
 
-    public function LoadFromLogin(string $login) : ?WebsiteUser
+    public function LoadFromLogin(string $login) : ?User
     {
         try
         {
             $db = new Database();
             $db->BeginTransaction();
 
-            $wuDAL = new WebsiteUserDAL($db);
-            $websiteUser = $wuDAL->LoadFromLogin($login);
+            $uDAL = new UserDAL($db);
+            $user = $uDAL->LoadFromLogin($login);
 
             $db->Commit();
 
-            return $websiteUser;
+            return $user;
         }
         catch (\Exception $e)
         {

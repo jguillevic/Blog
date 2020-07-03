@@ -1,8 +1,8 @@
 <?php
 
-namespace Model\User;
+namespace Model\Admin\User;
 
-class WebsiteUser implements \JsonSerializable
+class User implements \JsonSerializable
 {
     private $id = -1;
     private $login = "";
@@ -17,7 +17,7 @@ class WebsiteUser implements \JsonSerializable
         return $this->id;
     }
 
-    public function SetId(int $id) : WebsiteUser
+    public function SetId(int $id) : User
     {
         $this->id = $id;
 
@@ -29,7 +29,7 @@ class WebsiteUser implements \JsonSerializable
         return $this->login;
     }
 
-    public function SetLogin(string $login) : WebsiteUser
+    public function SetLogin(string $login) : User
     {
         $this->login = $login;
 
@@ -41,7 +41,7 @@ class WebsiteUser implements \JsonSerializable
         return $this->email;
     }
 
-    public function SetEmail(string $email) : WebsiteUser
+    public function SetEmail(string $email) : User
     {
         $this->email = $email;
 
@@ -53,7 +53,7 @@ class WebsiteUser implements \JsonSerializable
         return $this->avatarUrl;
     }
 
-    public function SetAvatarUrl(string $avatarUrl) : WebsiteUser
+    public function SetAvatarUrl(string $avatarUrl) : User
     {
         $this->avatarUrl = $avatarUrl;
 
@@ -65,7 +65,7 @@ class WebsiteUser implements \JsonSerializable
         return $this->isActivated;
     }
 
-    public function SetIsActivated(bool $isActivated) : WebsiteUser
+    public function SetIsActivated(bool $isActivated) : User
     {
         $this->isActivated = $isActivated;
 
@@ -77,7 +77,7 @@ class WebsiteUser implements \JsonSerializable
         return $this->activationCode;
     }
 
-    public function SetActivationCode(?string $activationCode) : WebsiteUser
+    public function SetActivationCode(?string $activationCode) : User
     {
         $this->activationCode = $activationCode;
 
@@ -89,7 +89,7 @@ class WebsiteUser implements \JsonSerializable
         return $this->forgottenPasswordCode;
     }
 
-    public function SetForgottenPasswordCode(?string $forgottenPasswordCode) : WebsiteUser
+    public function SetForgottenPasswordCode(?string $forgottenPasswordCode) : User
     {
         $this->forgottenPasswordCode = $forgottenPasswordCode;
 

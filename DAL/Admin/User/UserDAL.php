@@ -1,12 +1,12 @@
 <?php
 
-namespace DAL\User;
+namespace DA\Admin\User;
 
 use Framework\DAL\Database;
 use Framework\Tools\Error\ErrorManager;
-use Model\User\WebsiteUser;
+use Model\Admin\User\User;
 
-class WebsiteUserDAL
+class UserDAL
 {
     private $db;
     
@@ -22,7 +22,7 @@ class WebsiteUserDAL
     {
         try
         {
-            $query = "SELECT 1 FROM WebsiteUser AS WU WHERE WU.Login = :Login;";
+            $query = "SELECT 1 FROM User AS U WHERE U.Login = :Login;";
 
             $params = [ ":Login" => $login ];
 
@@ -46,7 +46,7 @@ class WebsiteUserDAL
     {
         try
         {
-            $query = "SELECT 1 FROM WebsiteUser AS WU WHERE WU.Email = :Email;";
+            $query = "SELECT 1 FROM User AS U WHERE U.Email = :Email;";
 
             $params = [ ":Email" => $email ];
 
@@ -96,7 +96,7 @@ class WebsiteUserDAL
     {
         try
         {
-            $query = "SELECT IsActivated FROM WebsiteUser AS WU WHERE WU.Login = :Login;";
+            $query = "SELECT IsActivated FROM User AS U WHERE U.Login = :Login;";
 
             $params = [ ":Login" => $login ];
 
@@ -120,7 +120,7 @@ class WebsiteUserDAL
     {
         try
         {
-            $query = "UPDATE WebsiteUser SET IsActivated = 1 WHERE ActivationCode = :ActivationCode AND IsActivated = 0;";
+            $query = "UPDATE User SET IsActivated = 1 WHERE ActivationCode = :ActivationCode AND IsActivated = 0;";
 
             $params = [ ":ActivationCode" => $activationCode ];
 
@@ -145,9 +145,9 @@ class WebsiteUserDAL
     {
         try
         {
-            $query = "SELECT WU.PasswordHash
-                      FROM WebsiteUser AS WU
-                      WHERE WU.Login = :Login;";
+            $query = "SELECT U.PasswordHash
+                      FROM User AS U
+                      WHERE U.Login = :Login;";
         
             $params = [ ":Login" => $login ];
 
@@ -170,11 +170,11 @@ class WebsiteUserDAL
         }
     }
 
-    public function Add(WebsiteUser $user, string $passwordHash) : bool
+    public function Add(User $user, string $passwordHash) : bool
     {
         try
         {
-            $query = "INSERT INTO WebsiteUser (Login, Email, PasswordHash, AvatarUrl, IsActivated, ActivationCode, ForgottenPasswordCode)
+            $query = "INSERT INTO User (Login, Email, PasswordHash, AvatarUrl, IsActivated, ActivationCode, ForgottenPasswordCode)
                       VALUES (:Login, :Email, :PasswordHash, :AvatarUrl, :IsActivated, :ActivationCode, :ForgottenPasswordCode);";
             
             $params = [ 
@@ -204,19 +204,19 @@ class WebsiteUserDAL
         }
     }
 
-    public function LoadFromLogin(string $login) : ?WebsiteUser
+    public function LoadFromLogin(string $login) : ?User
     {
         try
         {
-            $query = "SELECT WU.Id
-                      , WU.Login
-                      , WU.Email
-                      , WU.AvatarUrl
-                      , WU.IsActivated
-                      , WU.ActivationCode 
-                      , WU.ForgottenPasswordCode
-                      FROM WebsiteUser AS WU 
-                      WHERE WU.Login = :Login;";
+            $query = "SELECT U.Id
+                      , U.Login
+                      , U.Email
+                      , U.AvatarUrl
+                      , U.IsActivated
+                      , U.ActivationCode 
+                      , U.ForgottenPasswordCode
+                      FROM User AS U 
+                      WHERE U.Login = :Login;";
 
             $params = [
                 ":Login" => $login
@@ -232,16 +232,16 @@ class WebsiteUserDAL
             {
                 $row = $rows[0];
 
-                $wu = new WebsiteUser();
-                $wu->SetId($row["Id"]);
-                $wu->SetLogin($row["Login"]);
-                $wu->SetEmail($row["Email"]);
-                $wu->SetAvatarUrl($row["AvatarUrl"]);
-                $wu->SetIsActivated($row["IsActivated"] == 1);
-                $wu->SetActivationCode($row["ActivationCode"]);
-                $wu->SetForgottenPasswordCode($row["ForgottenPasswordCode"]);
+                $u = new User();
+                $u->SetId($row["Id"]);
+                $u->SetLogin($row["Login"]);
+                $u->SetEmail($row["Email"]);
+                $u->SetAvatarUrl($row["AvatarUrl"]);
+                $u->SetIsActivated($row["IsActivated"] == 1);
+                $u->SetActivationCode($row["ActivationCode"]);
+                $u->SetForgottenPasswordCode($row["ForgottenPasswordCode"]);
 
-                return $wu;
+                return $u;
             }
 
             return null;

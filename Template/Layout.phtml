@@ -4,10 +4,10 @@ use \Tools\Helper\UserHelper;
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr-fr">
 	<head>
 		<meta charset="UTF-8">
-		<title>MyMeals</title>
+		<title>Healthy Khany</title>
 		<link rel="icon" href="../Assets/images/icons/watermelon.png">
 		<link rel="stylesheet" type="text/css" href="../Assets/css/style.css"> 	
 		<link href="https://fonts.googleapis.com/css?family=Montserrat:200,300,400,500,600,700|Roboto:400,700" rel="stylesheet">
@@ -19,18 +19,11 @@ use \Tools\Helper\UserHelper;
 			<nav class="nav">
 				<section class="nav__wrapper">
 					<span class="nav__brand">
-						<a href="<?= RoutesHelper::Path("DisplayHome"); ?>" tabindex="0">Le blog healthy de Khany</a>
+						<a href="<?= RoutesHelper::Path("DisplayHome"); ?>" tabindex="0">Healthy Khany</a>
 					</span>
 
 					<span class="nav__menu-user-wrapper">
 						<span class="nav__menu">
-	<?php if (UserHelper::IsLogin()): ?>
-							
-	<?php endif; ?>
-						</span>
-
-						<span class="nav__user">
-
 						</span>
 					</span>
 				</section>

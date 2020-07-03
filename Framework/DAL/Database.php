@@ -27,7 +27,7 @@ class Database
 	{
 		$config = self::GetConfig();
 
-		return new \PDO("mysql:host=".getenv("DBHost")."; dbname=".getenv("DBName")."", getenv("DBLogin"), getenv("DBPwd"));
+		return new \PDO(getenv("DBEngine").":host=".getenv("DBHost")."; dbname=".getenv("DBName")."", getenv("DBLogin"), getenv("DBPwd"));
 	}
 
 	public function GetLastInsertId()
