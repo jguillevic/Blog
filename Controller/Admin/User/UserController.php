@@ -10,7 +10,6 @@ use Model\Admin\User\User;
 use Tools\Helper\UserHelper;
 use Framework\Controller\Violation\ViolationManager;
 use Framework\Tools\Error\ErrorManager;
-use Config\Facebook\FacebookConfig;
 
 class UserController
 {

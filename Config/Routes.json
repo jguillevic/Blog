@@ -18,10 +18,10 @@
 		, "Name": "ContactSend"
 	}
 	, {
-		"Path": "/User/Admin/Login"
-		, "Controller": "Admin\\User\\UserController"
-		, "Action": "Login"
-		, "Name": "AdminUserLogin"
+		"Path": "/Admin"
+		, "Controller": "Admin\\AdminController"
+		, "Action": "Display"
+		, "Name": "AdminDisplay"
 	}
 	, {
 		"Path": "/Admin/User/Login"
