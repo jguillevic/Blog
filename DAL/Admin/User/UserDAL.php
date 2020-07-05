@@ -1,6 +1,6 @@
 <?php
 
-namespace DA\Admin\User;
+namespace DAL\Admin\User;
 
 use Framework\DAL\Database;
 use Framework\Tools\Error\ErrorManager;
@@ -22,7 +22,7 @@ class UserDAL
     {
         try
         {
-            $query = "SELECT 1 FROM User AS U WHERE U.Login = :Login;";
+            $query = "SELECT 1 FROM website_user AS U WHERE U.login = :Login;";
 
             $params = [ ":Login" => $login ];
 
@@ -46,7 +46,7 @@ class UserDAL
     {
         try
         {
-            $query = "SELECT 1 FROM User AS U WHERE U.Email = :Email;";
+            $query = "SELECT 1 FROM website_user AS U WHERE U.email = :Email;";
 
             $params = [ ":Email" => $email ];
 
@@ -74,9 +74,6 @@ class UserDAL
 
             $loadedPasswordHash = $this->LoadPasswordHashFromLogin($login);
 
-            var_dump($loadedPasswordHash);
-            var_dump($passwordHash);
-
             $this->db->Commit();
 
             if ($loadedPasswordHash != null)
@@ -96,7 +93,7 @@ class UserDAL
     {
         try
         {
-            $query = "SELECT IsActivated FROM User AS U WHERE U.Login = :Login;";
+            $query = "SELECT is_activated FROM website_user AS U WHERE U.login = :Login;";
 
             $params = [ ":Login" => $login ];
 
@@ -106,7 +103,10 @@ class UserDAL
 
             $this->db->Commit();
 
-            return $rows[0]["IsActivated"];
+            if (count($rows) > 0)
+                return $rows[0]["is_activated"] == 1;
+            else
+                return false;
         }
         catch (\Exception $e)
         {
@@ -120,7 +120,7 @@ class UserDAL
     {
         try
         {
-            $query = "UPDATE User SET IsActivated = 1 WHERE ActivationCode = :ActivationCode AND IsActivated = 0;";
+            $query = "UPDATE website_user SET is_activated = 1 WHERE activation_code = :ActivationCode AND is_activated = 0;";
 
             $params = [ ":ActivationCode" => $activationCode ];
 
@@ -145,9 +145,9 @@ class UserDAL
     {
         try
         {
-            $query = "SELECT U.PasswordHash
-                      FROM User AS U
-                      WHERE U.Login = :Login;";
+            $query = "SELECT U.password_hash
+                      FROM website_user AS U
+                      WHERE U.login = :Login;";
         
             $params = [ ":Login" => $login ];
 
@@ -158,7 +158,7 @@ class UserDAL
             $this->db->Commit();
 
             if (count($rows) > 0)
-                return $rows[0]["PasswordHash"];
+                return $rows[0]["password_hash"];
 
             return null;
         }
@@ -174,7 +174,7 @@ class UserDAL
     {
         try
         {
-            $query = "INSERT INTO User (Login, Email, PasswordHash, AvatarUrl, IsActivated, ActivationCode, ForgottenPasswordCode)
+            $query = "INSERT INTO website_user (login, email, password_hash, avatar_url, is_activated, activation_code, forgotten_password_code)
                       VALUES (:Login, :Email, :PasswordHash, :AvatarUrl, :IsActivated, :ActivationCode, :ForgottenPasswordCode);";
             
             $params = [ 
@@ -208,15 +208,15 @@ class UserDAL
     {
         try
         {
-            $query = "SELECT U.Id
-                      , U.Login
-                      , U.Email
-                      , U.AvatarUrl
-                      , U.IsActivated
-                      , U.ActivationCode 
-                      , U.ForgottenPasswordCode
-                      FROM User AS U 
-                      WHERE U.Login = :Login;";
+            $query = "SELECT U.id
+                      , U.login
+                      , U.email
+                      , U.avatar_url
+                      , U.is_activated
+                      , U.activation_code 
+                      , U.forgotten_password_code
+                      FROM website_user AS U 
+                      WHERE U.login = :Login;";
 
             $params = [
                 ":Login" => $login
@@ -233,13 +233,13 @@ class UserDAL
                 $row = $rows[0];
 
                 $u = new User();
-                $u->SetId($row["Id"]);
-                $u->SetLogin($row["Login"]);
-                $u->SetEmail($row["Email"]);
-                $u->SetAvatarUrl($row["AvatarUrl"]);
-                $u->SetIsActivated($row["IsActivated"] == 1);
-                $u->SetActivationCode($row["ActivationCode"]);
-                $u->SetForgottenPasswordCode($row["ForgottenPasswordCode"]);
+                $u->SetId($row["id"]);
+                $u->SetLogin($row["login"]);
+                $u->SetEmail($row["email"]);
+                $u->SetAvatarUrl($row["avatar_url"]);
+                $u->SetIsActivated($row["is_activated"] == 1);
+                $u->SetActivationCode($row["activation_code"]);
+                $u->SetForgottenPasswordCode($row["forgotten_password_code"]);
 
                 return $u;
             }
@@ -252,5 +252,56 @@ class UserDAL
 
             ErrorManager::Manage($e);
         } 
+    }
+
+    public function Load() : array
+    {
+        try
+        {
+            $query = "SELECT U.id
+                      , U.login
+                      , U.email
+                      , U.avatar_url
+                      , U.is_activated
+                      , U.activation_code 
+                      , U.forgotten_password_code
+                      FROM website_user AS U;";
+
+            $params = [];
+
+            $query .= " ORDER BY U.id;";
+
+            $this->db->BeginTransaction();
+
+            $rows = $this->db->Read($query, $params);
+
+            $this->db->Commit();
+
+            $users = [];
+
+            foreach ($rows as $row)
+            {
+                $user = new User();
+                
+                $u = new User();
+                $u->SetId($row["id"]);
+                $u->SetLogin($row["login"]);
+                $u->SetEmail($row["email"]);
+                $u->SetAvatarUrl($row["avatar_url"]);
+                $u->SetIsActivated($row["is_activated"] == 1);
+                $u->SetActivationCode($row["activation_code"]);
+                $u->SetForgottenPasswordCode($row["forgotten_password_code"]);
+
+                $users[$user->GetId()] = $user;
+            }
+
+            return $users;
+        }
+        catch (\Exception $e)
+        {
+            $this->db->Rollback();
+
+            ErrorManager::Manage($e);
+        }
     }
 }

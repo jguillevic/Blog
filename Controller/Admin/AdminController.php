@@ -7,7 +7,7 @@ use Framework\Tools\Helper\PathHelper;
 use Framework\Tools\Helper\RoutesHelper;
 use Tools\Helper\UserHelper;
 
-class UserController
+class AdminController
 {
     public function Display($queryParameters)
     {
@@ -26,7 +26,7 @@ class UserController
                 RoutesHelper::Redirect("DisplayError");
             }
             else
-                RoutesHelper::Redirect("UserLogin");
+                RoutesHelper::Redirect("AdminUserLogin");
 		}
 		catch (\Exception $e)
 		{

@@ -40,18 +40,18 @@ class UserController
             $path = PathHelper::GetPath([ "Admin", "User", "Login" ]);
             $view = new View($path);
 
-            $wu = new WebsiteUser();
+            $u = new User();
             $violations = new ViolationManager();
             $password = "";
 
             if ($_SERVER["REQUEST_METHOD"] == "POST")
             {
                 $login = $queryParameters["login"]->GetValue();
-                $wu->SetLogin($login);
+                $u->SetLogin($login);
                 $password = $queryParameters["password"]->GetValue();
                 $passwordHash = hash("SHA512", $this->salt . $password);
 
-                $uBLL = new WebsiteUserBLL();
+                $uBLL = new UserBLL();
 
                 $isLoginExists = $uBLL->IsLoginExists($login);
                 $isActivated = $uBLL->IsActivated($login);
@@ -63,8 +63,8 @@ class UserController
                     if ($isPasswordHashMatches === true)
                     {
                         $u = $uBLL->LoadFromLogin($login);
-                        UserHelper::WebsiteLogin($u);
-                        RoutesHelper::Redirect("DisplayHome");
+                        UserHelper::Login($u);
+                        RoutesHelper::Redirect("DisplayAdmin");
                     }
                     else
                         $violations->AddError("Password", "Le mot de passe est incorrect.");

@@ -15,18 +15,7 @@ $hasPasswordErrors = $violations->HasErrors("Password");
         <h1 class="login__title">Connectez-vous !</h1>
 
         <section class="login__wrapper">   
-            <form method="POST" action="<?= RoutesHelper::Path("UserLogin"); ?>">
-                <div class="login__social-buttons-wrapper">
-                    <button id="facebook-login-button" class="button contained-button contained-button-facebook" type="button"><span>Se connecter avec Facebook</span></a>
-                    <!-- <button id="twitter-login-button" class="button contained-button contained-button-twitter" type="button"><span>Se connecter avec Twitter</span></a> -->
-                </div>
-
-                <div class="login__separator">
-                    <span class="login__separator__border login__separator__border-left"></span>
-                    <p class="login__separator__text">ou</p>
-                    <span class="login__separator__border login__separator__border-right"></span>
-                </div>
-
+            <form method="POST" action="<?= RoutesHelper::Path("AdminUserLogin"); ?>">
                 <div class="login__inputs-wrapper">
                     <div class="login__inputs-wrapper__input">
                         <div id="input-login" class="input input-login <?php if ($hasLoginErrors) echo "error"; ?>">
@@ -55,12 +44,7 @@ $hasPasswordErrors = $violations->HasErrors("Password");
                     </div>
                 </div>
 
-                <div class="login__helpers-wrapper">
-                    <a class="login__helpers-wrapper__forgotten-password" href="">Mot de passe oublié ?</a>
-                </div>
-
                 <div class="login__buttons-wrapper">
-                    <button id="register-button" class="button text-button" type="button">S'inscrire</button>
                     <button id="login-button" class="button contained-button" type="submit">Se connecter</button>
                 </div>
             </form>

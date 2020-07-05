@@ -23,7 +23,7 @@ class ContactDAL
     {
         try
         {
-            $query = "INSERT INTO Contact (FirstName, LastName, Email, Content)
+            $query = "INSERT INTO contact (first_name, last_name, email, content)
                       VALUES (:FirstName, :LastName, :Email, :Content);";
 
             $this->db->BeginTransaction();
@@ -40,7 +40,7 @@ class ContactDAL
                 $this->db->Execute($query, $params);
             }
 
-            $this->db->Commit(); 
+            $this->db->Commit();
         }
         catch (\Exception $e)
         {

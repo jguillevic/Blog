@@ -14,7 +14,6 @@ class Database
 
 		self::SetCharacterSetUTF8($this->connect);
 		self::SetErrorMode($this->connect);
-		self::SetAutoCommit($this->connect);
 	}
 
 	public function __destruct()
@@ -25,8 +24,6 @@ class Database
 
 	private static function GetPDO()
 	{
-		$config = self::GetConfig();
-
 		return new \PDO(getenv("DBEngine").":host=".getenv("DBHost")."; dbname=".getenv("DBName")."", getenv("DBLogin"), getenv("DBPwd"));
 	}
 

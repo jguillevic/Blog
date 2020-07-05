@@ -25,6 +25,24 @@ use \Tools\Helper\UserHelper;
 					<span class="nav__menu-user-wrapper">
 						<span class="nav__menu">
 						</span>
+
+<?php if (UserHelper::IsLogin()): ?>
+						<span class="nav__user">
+							<img id="avatar" class="nav__user__avatar" src="<?= UserHelper::GetAvatarUrl(); ?>"/>
+							<section id="avatar-tooltip" class="nav__user__avatar-tooltip hidden">
+								<section class="nav__user__avatar-tooltip__header">
+									<section>
+										<img src="<?= UserHelper::GetAvatarUrl(); ?>"/>
+									</section>
+									<p>Bonjour <?= UserHelper::GetName(); ?> !</p>
+								</section>
+								<section class="nav__user__avatar-tooltip__footer">
+									<a class="button outlined-button light" href="">Profil</a>
+									<a id="logout-link" class="button outlined-button light" href="<?= RoutesHelper::Path("AdminUserLogout"); ?>">Se déconnecter</a>
+								</section>
+							</section>
+						</span>
+<?php endif; ?>
 					</span>
 				</section>
 			</nav>

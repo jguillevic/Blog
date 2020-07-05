@@ -21,16 +21,16 @@
 		"Path": "/Admin"
 		, "Controller": "Admin\\AdminController"
 		, "Action": "Display"
-		, "Name": "AdminDisplay"
+		, "Name": "DisplayAdmin"
 	}
 	, {
-		"Path": "/Admin/User/Login"
+		"Path": "/User/Login"
 		, "Controller": "Admin\\User\\UserController"
 		, "Action": "Login"
 		, "Name": "AdminUserLogin"
 	}
 	, {
-		"Path": "/Admin/User/Logout"
+		"Path": "/User/Logout"
 		, "Controller": "Admin\\User\\UserController"
 		, "Action": "Logout"
 		, "Name": "AdminUserLogout"

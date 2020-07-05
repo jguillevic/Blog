@@ -1,199 +1,53 @@
-DROP DATABASE IF EXISTS meals_generator;
-
-CREATE DATABASE meals_generator;
-
-USE meals_generator;
-
-CREATE TABLE Repository
+CREATE TABLE website_user
 (
-	Id INT NOT NULL AUTO_INCREMENT
-	, PRIMARY KEY (Id)
-) ENGINE=InnoDB;
+	id SERIAL
+	, login VARCHAR(200) NOT NULL UNIQUE
+	, email VARCHAR(200) NOT NULL UNIQUE
+	, avatar_url VARCHAR(500) NOT NULL
+	, password_hash VARCHAR(128) NOT NULL -- SHA-512
+	, is_activated BOOLEAN NOT NULL
+	, activation_code CHAR(36) NOT NULL UNIQUE -- GUID
+	, forgotten_password_code CHAR(36) NULL UNIQUE -- GUID
+	, PRIMARY KEY (id)
+ );
 
-CREATE TABLE Month
+CREATE TABLE contact
 (
-	Id INT NOT NULL AUTO_INCREMENT
-	, Code NVARCHAR(20) NOT NULL UNIQUE
-	, Name NVARCHAR(200) NOT NULL
-	, PRIMARY KEY (Id)
-) ENGINE=InnoDB;
+	id SERIAL
+	, first_name VARCHAR(200) NOT NULL
+	, last_name VARCHAR(200) NOT NULL
+	, email VARCHAR(200) NOT NULL
+	, content TEXT NOT NULL
+	, PRIMARY KEY (id)
+);
 
-CREATE TABLE WebsiteUser
+CREATE history
 (
-	Id INT NOT NULL AUTO_INCREMENT
-	, Login NVARCHAR(200) NOT NULL UNIQUE
-	, Email NVARCHAR(200) NOT NULL UNIQUE
-	, AvatarUrl NVARCHAR(500) NOT NULL
-	, PasswordHash NVARCHAR(128) NOT NULL -- SHA-512
-	, IsActivated TINYINT(1) NOT NULL
-	, ActivationCode CHAR(36) NOT NULL UNIQUE -- GUID
-	, ForgottenPasswordCode CHAR(36) NULL UNIQUE -- GUID
-	, PRIMARY KEY (Id)
- ) ENGINE=InnoDB;
+	id SERIAL
+	, date_time DATETIME NOT NULL
+	, user_id INT NOT NULL
+	, PRIMARY KEY (id)
+	, FOREIGN KEY (user_id) REFERENCES website_user (id)
+);
 
- CREATE TABLE FacebookUser
+CREATE post
 (
-	FacebookId BIGINT NOT NULL
-	, FirstName NVARCHAR(200) NOT NULL
-	, LastName NVARCHAR(200) NOT NULL
-	, Email NVARCHAR(200) NOT NULL
-	, Birthday DATE NOT NULL
-	, ProfilePictureUrl NVARCHAR(500) NOT NULL
-	, AccessToken NVARCHAR(500) NOT NULL
-	, ExpirationDate DATETIME NOT NULL
-	, PRIMARY KEY (FacebookId)
- ) ENGINE=InnoDB;
+	id SERIAL
+	, title VARCHAR(200) NOT NULL
+	, slug VARCHAR(200) NOT NULL
+	, description VARCHAR(500) NOT NULL
+	, content TEXT NOT NULL
+	, is_published BOOLEAN NOT NULL
+	, creation_history_id INT NOT NULL
+	, PRIMARY KEY (id)
+	, FOREIGN KEY (creation_history_id) REFERENCES history (id)
+);
 
- CREATE TABLE Contact
- (
-	Id INT NOT NULL AUTO_INCREMENT
-	, FirstName NVARCHAR(200) NOT NULL
-	, LastName NVARCHAR(200) NOT NULL
-	, Email NVARCHAR(200) NOT NULL
-	, Content TEXT NOT NULL
-	, PRIMARY KEY (Id)
- ) ENGINE=InnoDB;
-
-CREATE TABLE ShoppingCategory
+CREATE post_update
 (
-	Id INT NOT NULL AUTO_INCREMENT
-	, Code NVARCHAR(20) NOT NULL
-	, Name NVARCHAR(200) NOT NULL
-	, PRIMARY KEY (Id)
-) ENGINE=InnoDB;
-
-CREATE TABLE UnitCategory
-(
-	Id INT NOT NULL AUTO_INCREMENT
-	, Code NVARCHAR(20) NOT NULL
-	, PRIMARY KEY (Id)
-) ENGINE=InnoDB;
-
-CREATE TABLE Unit
-(
-	Id INT NOT NULL AUTO_INCREMENT
-	, Name NVARCHAR(200) NOT NULL
-	, Code NVARCHAR(20) NOT NULL
-	, ConversionFactor FLOAT NULL
-	, CategoryId INT NOT NULL
-	, PRIMARY KEY (Id)
-	, FOREIGN KEY (CategoryId) REFERENCES UnitCategory(Id)
-) ENGINE=InnoDB;
-
-CREATE TABLE Ingredient
-(
-	Id INT NOT NULL AUTO_INCREMENT
-	, Name NVARCHAR(200) NOT NULL
-	, DefaultUnitId INT NOT NULL
-	, PRIMARY KEY (Id)
-	, FOREIGN KEY (DefaultUnitId) REFERENCES Unit(Id)
-) ENGINE=InnoDB;
-
-CREATE TABLE Recipe
-(
-	Id INT NOT NULL AUTO_INCREMENT
-	, Name NVARCHAR(200) NOT NULL
-	, DefaultPersonNumber INT NOT NULL
-	, PreparationTime INT NOT NULL
-	, CookingTime INT NOT NULL
-	, PRIMARY KEY (Id)
-) ENGINE=InnoDB;
-
-CREATE TABLE Instruction
-(
-	Id INT NOT NULL AUTO_INCREMENT
-	, RecipeId INT NOT NULL
-	, Content TEXT NOT NULL
-	, `Order` INT NOT NULL
-	, PRIMARY KEY (Id)
-	, FOREIGN KEY (RecipeId) REFERENCES Recipe(Id)
-) ENGINE=InnoDB;
-
-CREATE TABLE Recipe_Ingredient
-(
-	RecipeId INT NOT NULL
-	, IngredientId INT NOT NULL
-	, Quantity FLOAT NOT NULL
-	, UnitId INT NOT NULL
-	, PRIMARY KEY (RecipeId, IngredientId)
-	, FOREIGN KEY (RecipeId) REFERENCES Recipe(Id)
-	, FOREIGN KEY (IngredientId) REFERENCES Ingredient(Id)
-	, FOREIGN KEY (UnitId) REFERENCES Unit(Id)
-) ENGINE=InnoDB;
-
-CREATE TABLE MealKind
-(
-	Id INT NOT NULL AUTO_INCREMENT
-	, Code NVARCHAR(20) NOT NULL
-	, Name NVARCHAR(200) NOT NULL
-	, PRIMARY KEY (Id)
-) ENGINE=InnoDB;
-
-CREATE TABLE MealItem
-(
-	Id INT NOT NULL AUTO_INCREMENT
-	, Name NVARCHAR(200) NOT NULL
-	, WeekProposedMaxCount INT NOT NULL
-	, RecipeId INT NULL
-	, PRIMARY KEY (Id)
-) ENGINE=InnoDB;
-
--- Disponibilité des MealItem en fonction des mois.
--- Ligne pour un mois = Disponible pour ce mois.
-CREATE TABLE MealItem_Month
-(
-	MealItemId INT NOT NULL
-	, MonthId INT NOT NULL
-	, PRIMARY KEY (MealItemId, MonthId)
-	, FOREIGN KEY (MealItemId) REFERENCES MealItem(Id)
-	, FOREIGN KEY (MonthId) REFERENCES Month(Id)
-) ENGINE=InnoDB;
-
-CREATE TABLE Meal
-(
-	Id INT NOT NULL AUTO_INCREMENT
-	, PRIMARY KEY (Id)
-) ENGINE=InnoDB;
-
-CREATE TABLE Meal_MealKind
-(
-	MealId INT NOT NULL
-	, MealKindId INT NOT NULL
-	, PRIMARY KEY (MealId, MealKindId)
-) ENGINE=InnoDB;
-
-CREATE TABLE Meal_MealItem
-(
-	MealId INT NOT NULL 
-	, MealItemId INT NOT NULL
-	, PRIMARY KEY (MealId, MealItemId)
-) ENGINE=InnoDB;
-
-CREATE TABLE PlannifiedMeal
-(
-	Id INT NOT NULL AUTO_INCREMENT
-	, Date DATE NOT NULL
-	, PersonNumber INT NOT NULL
-	, KindId INT NOT NULL
-	, MealId INT NOT NULL
-	, PRIMARY KEY (Id)
-	, FOREIGN KEY (KindId) REFERENCES MealKind(Id)
-	, FOREIGN KEY (MealId) REFERENCES Meal(Id)
-) ENGINE=InnoDB;
-
-CREATE TABLE ShoppingList
-(
-	Id INT NOT NULL AUTO_INCREMENT
-	, Name NVARCHAR(200) NOT NULL
-	, PRIMARY KEY (Id)
-) ENGINE=InnoDB;
-
-CREATE TABLE ShoppingListItem
-(
-	Id INT NOT NULL AUTO_INCREMENT
-	, ShoppingListId INT NOT NULL
-	, Content TEXT NOT NULL
-	, IsHandled TINYINT(1) NOT NULL
-	, PRIMARY KEY (Id)
-	, FOREIGN KEY (ShoppingListId) REFERENCES ShoppingList(Id)
-) ENGINE=InnoDB;
+	post_id INT NOT NULL
+	, history_id INT NOT NULL
+	, PRIMARY KEY (post_id, history_id)
+	, FOREIGN KEY (post_id) REFERENCES post (id)
+	, FOREIGN KEY (history_id) REFERENCES history (id)
+);

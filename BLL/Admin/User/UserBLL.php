@@ -25,7 +25,7 @@ class UserBLL
         }
         catch (\Exception $e)
         {
-            if ($db != null)
+            if (isset($db) && $db != null)
                 $db->Rollback();
 
             ErrorManager::Manage($e);
@@ -48,7 +48,7 @@ class UserBLL
         }
         catch (\Exception $e)
         {
-            if ($db != null)
+            if (isset($db) && $db != null)
                 $db->Rollback();
 
             ErrorManager::Manage($e);
@@ -71,7 +71,7 @@ class UserBLL
         }
         catch (\Exception $e)
         {
-            if ($db != null)
+            if (isset($db) && $db != null)
                 $db->Rollback();
 
             ErrorManager::Manage($e);
@@ -94,7 +94,7 @@ class UserBLL
         }
         catch (\Exception $e)
         {
-            if ($db != null)
+            if (isset($db) && $db != null)
                 $db->Rollback();
 
             ErrorManager::Manage($e);
@@ -117,7 +117,7 @@ class UserBLL
         }
         catch (\Exception $e)
         {
-            if ($db != null)
+            if (isset($db) && $db != null)
                 $db->Rollback();
 
             ErrorManager::Manage($e);
@@ -169,7 +169,7 @@ class UserBLL
         }
         catch (\Exception $e)
         {
-            if ($db != null)
+            if (isset($db) && $db != null)
                 $db->Rollback();
 
             ErrorManager::Manage($e);
@@ -192,7 +192,7 @@ class UserBLL
         }
         catch (\Exception $e)
         {
-            if ($db != null)
+            if (isset($db) && $db != null)
                 $db->Rollback();
 
             ErrorManager::Manage($e);
