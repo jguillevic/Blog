@@ -6,7 +6,7 @@ use \Framework\Tools\Query\QueryParameter;
 
 class QueryParameterHelper
 {
-	public static function GetQueryParametersFromQuery($query)
+	public static function GetQueryParametersFromQuery(string $query) : array
 	{
 		$parameters = array();
 
@@ -24,7 +24,7 @@ class QueryParameterHelper
 		return $parameters;
 	}
 
-	public static function GetQueryParametersFromPost($post)
+	public static function GetQueryParametersFromPost(array $post) : array
 	{
 		$parameters = array();
 

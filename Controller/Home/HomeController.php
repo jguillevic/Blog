@@ -8,7 +8,7 @@ use Framework\Tools\Helper\RoutesHelper;
 
 class HomeController
 {
-	public function Display($queryParameters)
+	public function Display(array $queryParameters)
 	{
 		try
         {

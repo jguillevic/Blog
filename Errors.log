@@ -1,12 +1,14 @@
 ################################################################################################
-DateTime : 04/07/2020 19:59:19 UTC+00:00
+DateTime : 06/07/2020 12:26:32 UTC+00:00
 File : C:\wamp64\www\blog\Framework\DAL\Database.php
-Line : 28
-Message : could not find driver
-Pile d'appel : #0 C:\wamp64\www\blog\Framework\DAL\Database.php(28): PDO->__construct(':host=; dbname=', '', '')
+Line : 27
+Message : SQLSTATE[08006] [7] could not connect to server: Connection timed out (0x0000274C/10060)
+	Is the server running on host "ec2-54-75-246-118.eu-west-1.compute.amazonaws.com" (54.75.246.118) and accepting
+	TCP/IP connections on port 5432?
+Pile d'appel : #0 C:\wamp64\www\blog\Framework\DAL\Database.php(27): PDO->__construct('pgsql:host=ec2-...', 'cyqluknzxdwvdt', '40dd80a0cd660cf...')
 #1 C:\wamp64\www\blog\Framework\DAL\Database.php(13): Framework\DAL\Database::GetPDO()
 #2 C:\wamp64\www\blog\BLL\Admin\User\UserBLL.php(16): Framework\DAL\Database->__construct()
-#3 C:\wamp64\www\blog\Controller\Admin\User\UserController.php(56): BLL\Admin\User\UserBLL->IsLoginExists('jkjkl')
+#3 C:\wamp64\www\blog\Controller\Admin\User\UserController.php(56): BLL\Admin\User\UserBLL->IsLoginExists('Khany')
 #4 [internal function]: Controller\Admin\User\UserController->Login(Array)
 #5 C:\wamp64\www\blog\Framework\Controller\FrontController.php(40): call_user_func_array(Array, Array)
 #6 C:\wamp64\www\blog\Framework\App.php(19): Framework\Controller\FrontController->Run()
@@ -14,14 +16,16 @@ Pile d'appel : #0 C:\wamp64\www\blog\Framework\DAL\Database.php(28): PDO->__cons
 #8 {main}
 ################################################################################################
 ################################################################################################
-DateTime : 04/07/2020 20:16:38 UTC+00:00
+DateTime : 06/07/2020 12:26:53 UTC+00:00
 File : C:\wamp64\www\blog\Framework\DAL\Database.php
-Line : 48
-Message : The auto-commit mode cannot be changed for this driver
-Pile d'appel : #0 C:\wamp64\www\blog\Framework\DAL\Database.php(48): PDO->setAttribute(0, 0)
-#1 C:\wamp64\www\blog\Framework\DAL\Database.php(17): Framework\DAL\Database::SetAutoCommit(Object(PDO))
+Line : 27
+Message : SQLSTATE[08006] [7] could not connect to server: Connection timed out (0x0000274C/10060)
+	Is the server running on host "ec2-54-75-246-118.eu-west-1.compute.amazonaws.com" (54.75.246.118) and accepting
+	TCP/IP connections on port 5432?
+Pile d'appel : #0 C:\wamp64\www\blog\Framework\DAL\Database.php(27): PDO->__construct('pgsql:host=ec2-...', 'cyqluknzxdwvdt', '40dd80a0cd660cf...')
+#1 C:\wamp64\www\blog\Framework\DAL\Database.php(13): Framework\DAL\Database::GetPDO()
 #2 C:\wamp64\www\blog\BLL\Admin\User\UserBLL.php(16): Framework\DAL\Database->__construct()
-#3 C:\wamp64\www\blog\Controller\Admin\User\UserController.php(56): BLL\Admin\User\UserBLL->IsLoginExists('hjk')
+#3 C:\wamp64\www\blog\Controller\Admin\User\UserController.php(56): BLL\Admin\User\UserBLL->IsLoginExists('Khany')
 #4 [internal function]: Controller\Admin\User\UserController->Login(Array)
 #5 C:\wamp64\www\blog\Framework\Controller\FrontController.php(40): call_user_func_array(Array, Array)
 #6 C:\wamp64\www\blog\Framework\App.php(19): Framework\Controller\FrontController->Run()
@@ -29,14 +33,16 @@ Pile d'appel : #0 C:\wamp64\www\blog\Framework\DAL\Database.php(48): PDO->setAtt
 #8 {main}
 ################################################################################################
 ################################################################################################
-DateTime : 04/07/2020 20:18:35 UTC+00:00
+DateTime : 06/07/2020 12:27:39 UTC+00:00
 File : C:\wamp64\www\blog\Framework\DAL\Database.php
-Line : 48
-Message : The auto-commit mode cannot be changed for this driver
-Pile d'appel : #0 C:\wamp64\www\blog\Framework\DAL\Database.php(48): PDO->setAttribute(0, 0)
-#1 C:\wamp64\www\blog\Framework\DAL\Database.php(17): Framework\DAL\Database::SetAutoCommit(Object(PDO))
+Line : 27
+Message : SQLSTATE[08006] [7] could not connect to server: Connection timed out (0x0000274C/10060)
+	Is the server running on host "ec2-54-75-246-118.eu-west-1.compute.amazonaws.com" (54.75.246.118) and accepting
+	TCP/IP connections on port 5432?
+Pile d'appel : #0 C:\wamp64\www\blog\Framework\DAL\Database.php(27): PDO->__construct('pgsql:host=ec2-...', 'cyqluknzxdwvdt', '40dd80a0cd660cf...')
+#1 C:\wamp64\www\blog\Framework\DAL\Database.php(13): Framework\DAL\Database::GetPDO()
 #2 C:\wamp64\www\blog\BLL\Admin\User\UserBLL.php(16): Framework\DAL\Database->__construct()
-#3 C:\wamp64\www\blog\Controller\Admin\User\UserController.php(56): BLL\Admin\User\UserBLL->IsLoginExists('hjk')
+#3 C:\wamp64\www\blog\Controller\Admin\User\UserController.php(56): BLL\Admin\User\UserBLL->IsLoginExists('Khany')
 #4 [internal function]: Controller\Admin\User\UserController->Login(Array)
 #5 C:\wamp64\www\blog\Framework\Controller\FrontController.php(40): call_user_func_array(Array, Array)
 #6 C:\wamp64\www\blog\Framework\App.php(19): Framework\Controller\FrontController->Run()
@@ -44,20 +50,53 @@ Pile d'appel : #0 C:\wamp64\www\blog\Framework\DAL\Database.php(48): PDO->setAtt
 #8 {main}
 ################################################################################################
 ################################################################################################
-DateTime : 04/07/2020 20:25:06 UTC+00:00
+DateTime : 06/07/2020 12:28:12 UTC+00:00
 File : C:\wamp64\www\blog\Framework\DAL\Database.php
-Line : 57
-Message : SQLSTATE[42703]: Undefined column: 7 ERROR:  column u.login does not exist
-LINE 1: SELECT 1 FROM User AS U WHERE U.Login = $1;
-                                      ^
-Pile d'appel : #0 C:\wamp64\www\blog\Framework\DAL\Database.php(57): PDOStatement->execute(Array)
-#1 C:\wamp64\www\blog\Framework\DAL\Database.php(71): Framework\DAL\Database->Execute('SELECT 1 FROM U...', Array)
-#2 C:\wamp64\www\blog\DAL\Admin\User\UserDAL.php(31): Framework\DAL\Database->Read('SELECT 1 FROM U...', Array)
-#3 C:\wamp64\www\blog\BLL\Admin\User\UserBLL.php(20): DAL\Admin\User\UserDAL->IsLoginExists('hjk')
-#4 C:\wamp64\www\blog\Controller\Admin\User\UserController.php(56): BLL\Admin\User\UserBLL->IsLoginExists('hjk')
-#5 [internal function]: Controller\Admin\User\UserController->Login(Array)
-#6 C:\wamp64\www\blog\Framework\Controller\FrontController.php(40): call_user_func_array(Array, Array)
-#7 C:\wamp64\www\blog\Framework\App.php(19): Framework\Controller\FrontController->Run()
-#8 C:\wamp64\www\blog\index.php(13): Framework\App->Run()
-#9 {main}
+Line : 27
+Message : SQLSTATE[08006] [7] could not connect to server: Connection timed out (0x0000274C/10060)
+	Is the server running on host "ec2-54-75-246-118.eu-west-1.compute.amazonaws.com" (54.75.246.118) and accepting
+	TCP/IP connections on port 5432?
+Pile d'appel : #0 C:\wamp64\www\blog\Framework\DAL\Database.php(27): PDO->__construct('pgsql:host=ec2-...', 'cyqluknzxdwvdt', '40dd80a0cd660cf...')
+#1 C:\wamp64\www\blog\Framework\DAL\Database.php(13): Framework\DAL\Database::GetPDO()
+#2 C:\wamp64\www\blog\BLL\Admin\User\UserBLL.php(16): Framework\DAL\Database->__construct()
+#3 C:\wamp64\www\blog\Controller\Admin\User\UserController.php(56): BLL\Admin\User\UserBLL->IsLoginExists('Khany')
+#4 [internal function]: Controller\Admin\User\UserController->Login(Array)
+#5 C:\wamp64\www\blog\Framework\Controller\FrontController.php(40): call_user_func_array(Array, Array)
+#6 C:\wamp64\www\blog\Framework\App.php(19): Framework\Controller\FrontController->Run()
+#7 C:\wamp64\www\blog\index.php(13): Framework\App->Run()
+#8 {main}
+################################################################################################
+################################################################################################
+DateTime : 06/07/2020 12:30:51 UTC+00:00
+File : C:\wamp64\www\blog\Framework\DAL\Database.php
+Line : 27
+Message : SQLSTATE[08006] [7] could not connect to server: Connection timed out (0x0000274C/10060)
+	Is the server running on host "ec2-54-75-246-118.eu-west-1.compute.amazonaws.com" (54.75.246.118) and accepting
+	TCP/IP connections on port 5432?
+Pile d'appel : #0 C:\wamp64\www\blog\Framework\DAL\Database.php(27): PDO->__construct('pgsql:host=ec2-...', 'cyqluknzxdwvdt', '40dd80a0cd660cf...')
+#1 C:\wamp64\www\blog\Framework\DAL\Database.php(13): Framework\DAL\Database::GetPDO()
+#2 C:\wamp64\www\blog\BLL\Post\PostBLL.php(79): Framework\DAL\Database->__construct()
+#3 C:\wamp64\www\blog\Controller\Post\PostController.php(15): BLL\Post\PostBLL->Load(Object(Model\Post\PostFilter))
+#4 [internal function]: Controller\Post\PostController->DisplayAllAdmin(Array)
+#5 C:\wamp64\www\blog\Framework\Controller\FrontController.php(40): call_user_func_array(Array, Array)
+#6 C:\wamp64\www\blog\Framework\App.php(19): Framework\Controller\FrontController->Run()
+#7 C:\wamp64\www\blog\index.php(13): Framework\App->Run()
+#8 {main}
+################################################################################################
+################################################################################################
+DateTime : 06/07/2020 14:07:45 UTC+00:00
+File : C:\wamp64\www\blog\Framework\DAL\Database.php
+Line : 27
+Message : SQLSTATE[08006] [7] could not connect to server: Connection timed out (0x0000274C/10060)
+	Is the server running on host "ec2-54-75-246-118.eu-west-1.compute.amazonaws.com" (54.75.246.118) and accepting
+	TCP/IP connections on port 5432?
+Pile d'appel : #0 C:\wamp64\www\blog\Framework\DAL\Database.php(27): PDO->__construct('pgsql:host=ec2-...', 'cyqluknzxdwvdt', '40dd80a0cd660cf...')
+#1 C:\wamp64\www\blog\Framework\DAL\Database.php(13): Framework\DAL\Database::GetPDO()
+#2 C:\wamp64\www\blog\BLL\Post\PostBLL.php(16): Framework\DAL\Database->__construct()
+#3 C:\wamp64\www\blog\Controller\Post\PostController.php(93): BLL\Post\PostBLL->Add(Array)
+#4 [internal function]: Controller\Post\PostController->Add(Array)
+#5 C:\wamp64\www\blog\Framework\Controller\FrontController.php(40): call_user_func_array(Array, Array)
+#6 C:\wamp64\www\blog\Framework\App.php(19): Framework\Controller\FrontController->Run()
+#7 C:\wamp64\www\blog\index.php(13): Framework\App->Run()
+#8 {main}
 ################################################################################################

@@ -478,7 +478,9 @@ option:not(:checked) {
       display: inline-block;
       position: relative;
       padding-right: 1.5em; }
-      .nav__menu__item::after {
+      .nav__menu__item:hover {
+        cursor: pointer; }
+      .nav__menu__item-list::after {
         content: "";
         background-image: url("..//images//icons//triangle-down.svg");
         background-size: 100%;
@@ -492,18 +494,16 @@ option:not(:checked) {
         transition: -webkit-transform 0.5s ease;
         transition: transform 0.5s ease;
         transition: transform 0.5s ease, -webkit-transform 0.5s ease; }
-      .nav__menu__item.open::after {
+      .nav__menu__item-list.open::after {
         -webkit-transform: rotate(180deg);
                 transform: rotate(180deg);
         -webkit-transform-origin: 50% 50%;
                 transform-origin: 50% 50%; }
-      .nav__menu__item:hover {
-        cursor: pointer; }
-      .nav__menu__item:not(:last-child) {
+      .nav__menu__item-list:not(:last-child) {
         margin-right: 4em; }
-      .nav__menu__item:last-child {
+      .nav__menu__item-list:last-child {
         margin-right: 8em; }
-      .nav__menu__item > span {
+      .nav__menu__item-list > span {
         pointer-events: none; }
     .nav__menu__sub-item__wrapper {
       position: absolute;
@@ -908,7 +908,7 @@ option:not(:checked) {
     margin-left: 45px;
     padding-right: 45px; }
 
-.wrapper-row-center, .footer > ul, .nav__user__avatar-tooltip__header > section, .login__wrapper, .register__wrapper, .register__buttons-wrapper, .contact__wrapper, .contact__buttons-wrapper {
+.wrapper-row-center, .footer > ul, .nav__user__avatar-tooltip__header > section, .login__wrapper, .login__buttons-wrapper, .register__wrapper, .register__buttons-wrapper, .contact__wrapper, .contact__buttons-wrapper {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -932,7 +932,7 @@ option:not(:checked) {
       -ms-flex-pack: center;
           justify-content: center; }
 
-.wrapper-row-spacebetween, .nav__user__avatar-tooltip__footer, .login__helpers-wrapper, .login__buttons-wrapper {
+.wrapper-row-spacebetween, .nav__user__avatar-tooltip__footer, .login__helpers-wrapper {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;

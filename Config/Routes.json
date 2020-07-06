@@ -24,16 +24,28 @@
 		, "Name": "DisplayAdmin"
 	}
 	, {
-		"Path": "/User/Login"
-		, "Controller": "Admin\\User\\UserController"
-		, "Action": "Login"
-		, "Name": "AdminUserLogin"
+		"Path": "/Admin/Post"
+		, "Controller": "Post\\PostController"
+		, "Action": "DisplayAllAsTable"
+		, "Name": "DisplayAllPostAsTable"
 	}
 	, {
-		"Path": "/User/Logout"
+		"Path": "/Admin/Post/Add"
+		, "Controller": "Post\\PostController"
+		, "Action": "Add"
+		, "Name": "AddPost"
+	}
+	, {
+		"Path": "/Admin/User/Login"
+		, "Controller": "Admin\\User\\UserController"
+		, "Action": "Login"
+		, "Name": "UserLoginAdmin"
+	}
+	, {
+		"Path": "/Admin/User/Logout"
 		, "Controller": "Admin\\User\\UserController"
 		, "Action": "Logout"
-		, "Name": "AdminUserLogout"
+		, "Name": "UserLogoutAdmin"
 	}
 	, {
 		"Path": "/Policy/Privacy"

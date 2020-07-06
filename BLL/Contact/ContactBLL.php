@@ -22,7 +22,7 @@ class ContactBLL
         }
         catch (\Exception $e)
         {
-            if ($db != null)
+            if (isset($db) && $db != null)
                 $db->Rollback();
 
             ErrorManager::Manage($e);

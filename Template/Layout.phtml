@@ -1,5 +1,6 @@
 <?php
 use \Framework\Tools\Helper\RoutesHelper;
+use \Framework\Tools\Helper\ResourcesHelper;
 use \Tools\Helper\UserHelper;
 ?>
 
@@ -8,11 +9,11 @@ use \Tools\Helper\UserHelper;
 	<head>
 		<meta charset="UTF-8">
 		<title>HK</title>
-		<link rel="icon" href="../Assets/images/icons/watermelon.png">
-		<link rel="stylesheet" type="text/css" href="../Assets/css/style.css"> 	
+		<link rel="icon" href="<?= ResourcesHelper::GetPath("Assets/images/icons/watermelon.png"); ?>">
+		<link rel="stylesheet" type="text/css" href="<?= ResourcesHelper::GetPath("Assets/css/style.css"); ?>"> 	
 		<link href="https://fonts.googleapis.com/css?family=Montserrat:200,300,400,500,600,700|Roboto:400,700" rel="stylesheet">
-		<script type="text/javascript" src="../Assets/js/jquery/jquery-3.3.1.min.js"></script>
-		<script type="text/javascript" src="../Assets/js/jquery/jquery-migrate-1.4.1.min.js"></script>
+		<script type="text/javascript" src="<?= ResourcesHelper::GetPath("Assets/js/jquery/jquery-3.3.1.min.js"); ?>"></script>
+		<script type="text/javascript" src="<?= ResourcesHelper::GetPath("Assets/js/jquery/jquery-migrate-1.4.1.min.js"); ?>"></script>
 	</head>
 	<body>
 		<header class="l-header header">
@@ -24,6 +25,9 @@ use \Tools\Helper\UserHelper;
 
 					<span class="nav__menu-user-wrapper">
 						<span class="nav__menu">
+							<a class="nav__menu__item">Mon actu</a>
+							<a class="nav__menu__item" href="<?= RoutesHelper::Path("DisplayContact"); ?>">Contact</a>
+							<a class="nav__menu__item">C'est moi !</a>
 						</span>
 
 <?php if (UserHelper::IsLogin()): ?>
@@ -38,7 +42,7 @@ use \Tools\Helper\UserHelper;
 								</section>
 								<section class="nav__user__avatar-tooltip__footer">
 									<a class="button outlined-button light" href="">Profil</a>
-									<a id="logout-link" class="button outlined-button light" href="<?= RoutesHelper::Path("AdminUserLogout"); ?>">Se déconnecter</a>
+									<a id="logout-link" class="button outlined-button light" href="<?= RoutesHelper::Path("UserLogoutAdmin"); ?>">Se déconnecter</a>
 								</section>
 							</section>
 						</span>
@@ -55,13 +59,13 @@ use \Tools\Helper\UserHelper;
 		</main>
 		<footer class="l-footer footer">
 			<ul>
-				<!-- <li><a href="<?= RoutesHelper::Path("DisplayPrivacy"); ?>">Données personnelles</a></li>
+				<li><a href="<?= RoutesHelper::Path("DisplayPrivacy"); ?>">Données personnelles</a></li>
 				<li><a href="<?= RoutesHelper::Path("DisplayTerms"); ?>">Mentions légales</a></li>
-				<li><a href=""></a>Cookies</li> -->
+				<li><a href=""></a>Cookies</li>
 				<li><a href="<?= RoutesHelper::Path("DisplayContact"); ?>">Contact</a></li>
 			</ul>
 		</footer>
 	</body>
 
-	<script type="text/javascript" src="../Assets/js/module/layout.js"></script>
+	<script type="text/javascript" src="<?= ResourcesHelper::GetPath("Assets/js/module/layout.js"); ?>"></script>
 </html>

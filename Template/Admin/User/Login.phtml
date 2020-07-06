@@ -15,7 +15,7 @@ $hasPasswordErrors = $violations->HasErrors("Password");
         <h1 class="login__title">Connectez-vous !</h1>
 
         <section class="login__wrapper">   
-            <form method="POST" action="<?= RoutesHelper::Path("AdminUserLogin"); ?>">
+            <form method="POST" action="<?= RoutesHelper::Path("UserLoginAdmin"); ?>">
                 <div class="login__inputs-wrapper">
                     <div class="login__inputs-wrapper__input">
                         <div id="input-login" class="input input-login <?php if ($hasLoginErrors) echo "error"; ?>">

@@ -52,9 +52,10 @@ class HistoryDAL
     {
         try
         {
-            $query = "DELETE H FROM history AS H WHERE" . DALHelper::SetArrayParams($ids, "H", "id", $params) . ";";
-            
             $params = [];
+
+            $query = "DELETE H FROM history AS H INNER JOIN post AS P ON H.id = P.creation_history_id WHERE " . DALHelper::SetArrayParams($postIds, "P", "id", $params) . ";";
+            $query .= " DELETE H FROM history AS H INNER JOIN post_update PU ON H.id = PU.hsitory_id WHERE ". DALHelper::SetArrayParams($postIds, "PU", "post_id", $params) . ";";
 
             $this->db->BeginTransaction();
 

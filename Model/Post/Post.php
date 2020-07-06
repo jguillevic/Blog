@@ -13,7 +13,7 @@ class Post
     private $content = "";
     private $isPublished = false;
     private $creationHistory = null;
-    private $updatesHistory = [];
+    private $updateHistories = [];
 
     public function GetId() : int
     {
@@ -99,14 +99,14 @@ class Post
         return $this;
     }
 
-    public function GetUpdatesHistory() : array
+    public function GetUpdateHistories() : array
     {
-        return $this->updatesHistory;
+        return $this->updateHistories;
     }
 
     public function AddUpdateHistory(History $updateHistory) : Post
     {
-        array_push($this->updatesHistory, $updateHistory);
+        array_push($this->updateHistories, $updateHistory);
 
         return $this;
     }

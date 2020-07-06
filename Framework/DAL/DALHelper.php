@@ -12,7 +12,7 @@ class DALHelper
 	 * @param array $params completed parameters for the query
 	 * @return string query condition in WHERE
 	 */
-	public static function SetArrayParams($data, $tableAlias, $columnName, &$params)
+	public static function SetArrayParams($data, $tableAlias, $columnName, &$params) : string
 	{
 		$query = sprintf("%s.%s IN (", $tableAlias, $columnName);
 

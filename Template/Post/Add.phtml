@@ -1,0 +1,89 @@
+<?php
+use Framework\Tools\Helper\RoutesHelper;
+use Model\Post\Post;
+$post = $params["Post"];
+$violations = $params["Violations"];
+$hasTitleErrors = $violations->HasErrors("Title");
+$hasDescriptionErrors = $violations->HasErrors("Description");
+$hasContentErrors = $violations->HasErrors("Content");
+?>
+
+<section class="l-content content">
+    <section class="add_post">
+        <h1 class="add_post__title">Ajoutez un nouvel article !</h1>
+
+        <section class="add_post__wrapper"> 
+            <form  method="POST" action="<?= RoutesHelper::Path("AddPost"); ?>">
+                <div class="add_post__inputs-wrapper">
+
+                    <div class="add_post__inputs-wrapper__input">
+                        <div id="input-title" class="input input-title <?php if ($hasTitleErrors) echo "error"; ?>">
+                            <input type="text" id="title" name="title" value="<?= $post->GetTitle(); ?>" placeholder="Titre" maxlength="200" required autofocus>
+                        </div>
+<?php if ($hasTitleErrors): ?>
+                        <section id="input-title-errors" class="error-text-wrapper">
+    <?php foreach ($violations->GetErrors("Title") as $error): ?>
+                            <p><?= $error; ?></p>
+    <?php endforeach; ?>
+                        </section>
+<?php endif; ?>
+                    </div>
+
+                    <div class="add_post__inputs-wrapper__input">
+                        <div id="input-description" class="input input-description <?php if ($hasDescriptionErrors) echo "error"; ?>">
+                            <input type="text" id="description" name="description" value="<?= $post->GetDescription(); ?>" placeholder="Description" maxlength="200" required autofocus>
+                        </div>
+<?php if ($hasDescriptionErrors): ?>
+                        <section id="input-description-errors" class="error-text-wrapper">
+    <?php foreach ($violations->GetErrors("Description") as $error): ?>
+                            <p><?= $error; ?></p>
+    <?php endforeach; ?>
+                        </section>
+<?php endif; ?>
+                    </div>
+
+                    <div class="add_post__inputs-wrapper__input">
+                        <div id="input-content" class="input input-content <?php if ($hasContentErrors) echo "error"; ?>">
+                            <textarea id="content" name="content" value="" placeholder="Contenu"></textarea>
+                        </div>
+<?php if ($hasContentErrors): ?>
+                        <section id="input-content-errors" class="error-text-wrapper">
+    <?php foreach ($violations->GetErrors("Content") as $error): ?>
+                            <p><?= $error; ?></p>
+    <?php endforeach; ?>
+                        </section>
+<?php endif; ?>
+                    </div>
+
+                    <div class="add_post__inputs-wrapper__input">
+                        <div id="input-is_published" class="input-is_published checkbox large">
+                            <div class="checkbox-container">
+                                <input type="checkbox" id="is_published" name="is_published" <?= $post->GetIsPublished() ? "checked" : ""; ?>>
+                                <div class="checkbox-checkmark"></div>
+                            </div>
+                            <label for="is_published">Publié ?</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="add_post__buttons-wrapper">
+                    <button id="add_post-button" class="button contained-button" type="submit">Enregistrer</button>
+                </div>
+            </form>
+        </section>
+    </section>
+</section>
+
+<script src="https://cdn.tiny.cloud/1/k17plol1hq2v4ko4wxq8cbcpfupahp0kqq9unkiykldg3txx/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+<script>
+    tinymce.init({
+      selector: '#content'
+      , plugins: [ 'code', 'image', 'media' ]
+      , toolbar: 'code'
+      , setup: function (editor) {
+      editor.on('init', function (e) {
+        editor.setContent(<?= json_encode($post->GetContent()); ?>);
+      });
+    }
+    });
+  </script>

@@ -1,0 +1,35 @@
+<?php
+use Framework\Tools\Helper\RoutesHelper;
+use Model\Post\Post;
+?>
+
+<section class="l-content content">
+    <section>
+        <a class="button contained-button" href="<?= RoutesHelper::Path("AddPost"); ?>">Ajouter</a>
+    </section>
+
+    <section>
+        <table>
+            <thead>
+                <tr>
+                    <th>Titre</th>
+                    <th>Publié ?</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+<?php
+$posts = $params["Posts"]; 
+foreach ($posts as $post)
+{
+?>
+                <tr>
+                    <td><?= $post->GetTitle(); ?></td>
+                    <td><?= $post->GetIsPublished() == true ? "Oui" : "Non"; ?></td>
+                    <td></td>
+                <tr>
+    <?php } ?>
+            </tbody>
+        </table>
+    </section>
+</section>

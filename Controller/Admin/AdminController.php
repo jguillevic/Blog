@@ -17,16 +17,13 @@ class AdminController
             {
                 if ($_SERVER["REQUEST_METHOD"] == "GET")
                 {
-                    $path = PathHelper::GetPath([ "Admin", "Display" ]);
-                    $view = new View($path);
-                    
-                    return $view->Render();
+                    RoutesHelper::Redirect("DisplayAllPostAsTable");
                 }
 
                 RoutesHelper::Redirect("DisplayError");
             }
             else
-                RoutesHelper::Redirect("AdminUserLogin");
+                RoutesHelper::Redirect("UserLoginAdmin");
 		}
 		catch (\Exception $e)
 		{
