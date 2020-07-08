@@ -2,22 +2,23 @@
 
 namespace Tools\Helper;
 
-use Model\User\WebsiteUser;
-use Model\User\FacebookUser;
-use Config\Facebook\FacebookConfig;
+use Model\Admin\User\User;
 
 /**
  * @author JGuillevic
  */
 class UserHelper
 {
-	public static function IsLogin()
+	public static function IsLogin() : bool
 	{
 		return array_key_exists("User", $_SESSION) && isset($_SESSION["User"]);
 	}
-	private static function GetUser()
+
+	public static function GetUser() : User
 	{
-		return $user = json_decode($_SESSION["User"]);
+		$user = new User();
+		$user->JsonDeserialize($_SESSION["User"]);
+		return $user;
 	}
 
 	public static function Login($user)
@@ -25,7 +26,7 @@ class UserHelper
 		$_SESSION["User"] = json_encode($user);
 	}
 
-	public static function Logout()
+	public static function Logout() : bool
 	{
 		session_unset();
 		session_destroy();
@@ -33,23 +34,23 @@ class UserHelper
 		return true;
 	}
 
-	public static function GetName()
+	public static function GetName() : string
 	{
 		if (self::IsLogin())
 		{
 			$user = self::GetUser();
-			return $user->Login;
+			return $user->GetLogin();
 		}
 
 		return null;
 	}
 
-	public static function GetAvatarUrl()
+	public static function GetAvatarUrl() : string
 	{
 		if (self::IsLogin())
 		{
 			$user = self::GetUser();
-			return $user->AvatarUrl;
+			return $user->GetAvatarUrl();
 		}
 		
 		return null;

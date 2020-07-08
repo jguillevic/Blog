@@ -4,32 +4,40 @@ use Model\Post\Post;
 ?>
 
 <section class="l-content content">
-    <section>
-        <a class="button contained-button" href="<?= RoutesHelper::Path("AddPost"); ?>">Ajouter</a>
-    </section>
+    <section class="post_display-as-table">
+        <section class="post_display-as-table__buttons">
+            <a class="button contained-button-add" href="<?= RoutesHelper::Path("AddPost"); ?>">Ajouter</a>
+        </section>
 
-    <section>
-        <table>
-            <thead>
-                <tr>
-                    <th>Titre</th>
-                    <th>Publié ?</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
+        <section class="post_display-as-table__table">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Titre</th>
+                        <th>Publié ?</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
 <?php
 $posts = $params["Posts"]; 
 foreach ($posts as $post)
 {
 ?>
-                <tr>
-                    <td><?= $post->GetTitle(); ?></td>
-                    <td><?= $post->GetIsPublished() == true ? "Oui" : "Non"; ?></td>
-                    <td></td>
-                <tr>
+                    <tr>
+                        <td><?= $post->GetTitle(); ?></td>
+                        <td><?= $post->GetIsPublished() == true ? "Oui" : "Non"; ?></td>
+                        <td>
+                            <section class="post_display-as-table__table__buttons-wrapper">
+                            <a class="button light contained-button-edit" href="<?= RoutesHelper::Path("DisplayOnePost", [ "slug" => $post->GetSlug() ]); ?>">Voir</a>
+                                <a class="button light contained-button-edit" href="<?= RoutesHelper::Path("UpdatePost", [ "id" => $post->GetId() ]); ?>">Modifier</a><!--
+                                --><a class="button light contained-button-delete" href="<?= RoutesHelper::Path("DeletePost", [ "id" => $post->GetId() ]); ?>">Supprimer</a>
+                            </section>
+                        </td>
+                    </tr>
     <?php } ?>
-            </tbody>
-        </table>
+                </tbody>
+            </table>
+        </section>
     </section>
 </section>

@@ -107,4 +107,18 @@ class User implements \JsonSerializable
             , "ActivationCode" => $this->GetActivationCode()
         ];
     }
+
+    public function JsonDeserialize(string $json) : User
+    {
+        $user = json_decode($json);
+
+        $this->SetId($user->Id);
+        $this->SetLogin($user->Login);
+        $this->SetEmail($user->Email);
+        $this->SetAvatarUrl($user->AvatarUrl);
+        $this->SetIsActivated($user->IsActivated);
+        $this->SetActivationCode($user->ActivationCode);
+
+        return $this;
+    }
 }

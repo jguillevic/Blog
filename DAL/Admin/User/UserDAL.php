@@ -265,11 +265,10 @@ class UserDAL
                       , U.is_activated
                       , U.activation_code 
                       , U.forgotten_password_code
-                      FROM website_user AS U;";
+                      FROM website_user AS U
+                      ORDER BY U.id;";
 
             $params = [];
-
-            $query .= " ORDER BY U.id;";
 
             $this->db->BeginTransaction();
 
@@ -281,8 +280,6 @@ class UserDAL
 
             foreach ($rows as $row)
             {
-                $user = new User();
-                
                 $u = new User();
                 $u->SetId($row["id"]);
                 $u->SetLogin($row["login"]);
@@ -292,7 +289,7 @@ class UserDAL
                 $u->SetActivationCode($row["activation_code"]);
                 $u->SetForgottenPasswordCode($row["forgotten_password_code"]);
 
-                $users[$user->GetId()] = $user;
+                $users[$u->GetId()] = $u;
             }
 
             return $users;

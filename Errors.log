@@ -100,3 +100,383 @@ Pile d'appel : #0 C:\wamp64\www\blog\Framework\DAL\Database.php(27): PDO->__cons
 #7 C:\wamp64\www\blog\index.php(13): Framework\App->Run()
 #8 {main}
 ################################################################################################
+################################################################################################
+DateTime : 07/07/2020 06:13:43 UTC+00:00
+File : C:\wamp64\www\blog\Framework\DAL\Database.php
+Line : 56
+Message : SQLSTATE[42703]: Undefined column: 7 ERROR:  column h.date_time does not exist
+LINE 9: ...ory AS H ON P.creation_history_id = H.id ORDER BY H.date_tim...
+                                                             ^
+Pile d'appel : #0 C:\wamp64\www\blog\Framework\DAL\Database.php(56): PDOStatement->execute(Array)
+#1 C:\wamp64\www\blog\Framework\DAL\Database.php(70): Framework\DAL\Database->Execute('SELECT P.id AS ...', Array)
+#2 C:\wamp64\www\blog\DAL\Post\PostDAL.php(208): Framework\DAL\Database->Read('SELECT P.id AS ...', Array)
+#3 C:\wamp64\www\blog\BLL\Post\PostBLL.php(83): DAL\Post\PostDAL->Load(Object(Model\Post\PostFilter))
+#4 C:\wamp64\www\blog\Controller\Post\PostController.php(26): BLL\Post\PostBLL->Load(Object(Model\Post\PostFilter))
+#5 [internal function]: Controller\Post\PostController->DisplayAllAsTable(Array)
+#6 C:\wamp64\www\blog\Framework\Controller\FrontController.php(40): call_user_func_array(Array, Array)
+#7 C:\wamp64\www\blog\Framework\App.php(19): Framework\Controller\FrontController->Run()
+#8 C:\wamp64\www\blog\index.php(13): Framework\App->Run()
+#9 {main}
+################################################################################################
+################################################################################################
+DateTime : 07/07/2020 06:14:51 UTC+00:00
+File : C:\wamp64\www\blog\Framework\DAL\Database.php
+Line : 56
+Message : SQLSTATE[42601]: Syntax error: 7 ERROR:  syntax error at or near ")"
+LINE 4:                     WHERE PU.post_id IN () ORDER BY PU.post_...
+                                                 ^
+Pile d'appel : #0 C:\wamp64\www\blog\Framework\DAL\Database.php(56): PDOStatement->execute(Array)
+#1 C:\wamp64\www\blog\Framework\DAL\Database.php(70): Framework\DAL\Database->Execute('SELECT PU.post_...', Array)
+#2 C:\wamp64\www\blog\DAL\Post\PostUpdateDAL.php(87): Framework\DAL\Database->Read('SELECT PU.post_...', Array)
+#3 C:\wamp64\www\blog\DAL\Post\PostDAL.php(235): DAL\Post\PostUpdateDAL->LoadFromPostIds(Array)
+#4 C:\wamp64\www\blog\BLL\Post\PostBLL.php(83): DAL\Post\PostDAL->Load(Object(Model\Post\PostFilter))
+#5 C:\wamp64\www\blog\Controller\Post\PostController.php(26): BLL\Post\PostBLL->Load(Object(Model\Post\PostFilter))
+#6 [internal function]: Controller\Post\PostController->DisplayAllAsTable(Array)
+#7 C:\wamp64\www\blog\Framework\Controller\FrontController.php(40): call_user_func_array(Array, Array)
+#8 C:\wamp64\www\blog\Framework\App.php(19): Framework\Controller\FrontController->Run()
+#9 C:\wamp64\www\blog\index.php(13): Framework\App->Run()
+#10 {main}
+################################################################################################
+################################################################################################
+DateTime : 07/07/2020 06:18:50 UTC+00:00
+File : C:\wamp64\www\blog\Framework\DAL\Database.php
+Line : 56
+Message : SQLSTATE[42601]: Syntax error: 7 ERROR:  syntax error at or near ")"
+LINE 4:                     WHERE PU.post_id IN () ORDER BY PU.post_...
+                                                 ^
+Pile d'appel : #0 C:\wamp64\www\blog\Framework\DAL\Database.php(56): PDOStatement->execute(Array)
+#1 C:\wamp64\www\blog\Framework\DAL\Database.php(70): Framework\DAL\Database->Execute('SELECT PU.post_...', Array)
+#2 C:\wamp64\www\blog\DAL\Post\PostUpdateDAL.php(87): Framework\DAL\Database->Read('SELECT PU.post_...', Array)
+#3 C:\wamp64\www\blog\DAL\Post\PostDAL.php(238): DAL\Post\PostUpdateDAL->LoadFromPostIds(Array)
+#4 C:\wamp64\www\blog\BLL\Post\PostBLL.php(83): DAL\Post\PostDAL->Load(Object(Model\Post\PostFilter))
+#5 C:\wamp64\www\blog\Controller\Post\PostController.php(26): BLL\Post\PostBLL->Load(Object(Model\Post\PostFilter))
+#6 [internal function]: Controller\Post\PostController->DisplayAllAsTable(Array)
+#7 C:\wamp64\www\blog\Framework\Controller\FrontController.php(40): call_user_func_array(Array, Array)
+#8 C:\wamp64\www\blog\Framework\App.php(19): Framework\Controller\FrontController->Run()
+#9 C:\wamp64\www\blog\index.php(13): Framework\App->Run()
+#10 {main}
+################################################################################################
+################################################################################################
+DateTime : 07/07/2020 06:28:48 UTC+00:00
+File : C:\wamp64\www\blog\Framework\DAL\Database.php
+Line : 56
+Message : SQLSTATE[23503]: Foreign key violation: 7 ERROR:  insert or update on table "post" violates foreign key constraint "post_creation_history_id_fkey"
+DETAIL:  Key (creation_history_id)=(-1) is not present in table "history".
+Pile d'appel : #0 C:\wamp64\www\blog\Framework\DAL\Database.php(56): PDOStatement->execute(Array)
+#1 C:\wamp64\www\blog\DAL\Post\PostDAL.php(49): Framework\DAL\Database->Execute('INSERT INTO pos...', Array)
+#2 C:\wamp64\www\blog\BLL\Post\PostBLL.php(20): DAL\Post\PostDAL->Add(Array)
+#3 C:\wamp64\www\blog\Controller\Post\PostController.php(93): BLL\Post\PostBLL->Add(Array)
+#4 [internal function]: Controller\Post\PostController->Add(Array)
+#5 C:\wamp64\www\blog\Framework\Controller\FrontController.php(40): call_user_func_array(Array, Array)
+#6 C:\wamp64\www\blog\Framework\App.php(19): Framework\Controller\FrontController->Run()
+#7 C:\wamp64\www\blog\index.php(13): Framework\App->Run()
+#8 {main}
+################################################################################################
+################################################################################################
+DateTime : 07/07/2020 07:07:50 UTC+00:00
+File : C:\wamp64\www\blog\Framework\DAL\Database.php
+Line : 56
+Message : SQLSTATE[23503]: Foreign key violation: 7 ERROR:  insert or update on table "post" violates foreign key constraint "post_creation_history_id_fkey"
+DETAIL:  Key (creation_history_id)=(-1) is not present in table "history".
+Pile d'appel : #0 C:\wamp64\www\blog\Framework\DAL\Database.php(56): PDOStatement->execute(Array)
+#1 C:\wamp64\www\blog\DAL\Post\PostDAL.php(49): Framework\DAL\Database->Execute('INSERT INTO pos...', Array)
+#2 C:\wamp64\www\blog\BLL\Post\PostBLL.php(20): DAL\Post\PostDAL->Add(Array)
+#3 C:\wamp64\www\blog\Controller\Post\PostController.php(93): BLL\Post\PostBLL->Add(Array)
+#4 [internal function]: Controller\Post\PostController->Add(Array)
+#5 C:\wamp64\www\blog\Framework\Controller\FrontController.php(40): call_user_func_array(Array, Array)
+#6 C:\wamp64\www\blog\Framework\App.php(19): Framework\Controller\FrontController->Run()
+#7 C:\wamp64\www\blog\index.php(13): Framework\App->Run()
+#8 {main}
+################################################################################################
+################################################################################################
+DateTime : 07/07/2020 10:20:31 UTC+00:00
+File : C:\wamp64\www\blog\Framework\DAL\Database.php
+Line : 56
+Message : SQLSTATE[22P02]: Invalid text representation: 7 ERROR:  invalid input syntax for type boolean: ""
+Pile d'appel : #0 C:\wamp64\www\blog\Framework\DAL\Database.php(56): PDOStatement->execute(Array)
+#1 C:\wamp64\www\blog\Framework\DAL\Database.php(70): Framework\DAL\Database->Execute('INSERT INTO pos...', Array)
+#2 C:\wamp64\www\blog\DAL\Post\PostDAL.php(50): Framework\DAL\Database->Read('INSERT INTO pos...', Array)
+#3 C:\wamp64\www\blog\BLL\Post\PostBLL.php(20): DAL\Post\PostDAL->Add(Array)
+#4 C:\wamp64\www\blog\Controller\Post\PostController.php(93): BLL\Post\PostBLL->Add(Array)
+#5 [internal function]: Controller\Post\PostController->Add(Array)
+#6 C:\wamp64\www\blog\Framework\Controller\FrontController.php(40): call_user_func_array(Array, Array)
+#7 C:\wamp64\www\blog\Framework\App.php(19): Framework\Controller\FrontController->Run()
+#8 C:\wamp64\www\blog\index.php(13): Framework\App->Run()
+#9 {main}
+################################################################################################
+################################################################################################
+DateTime : 07/07/2020 19:37:02 UTC+00:00
+File : C:\wamp64\www\blog\Framework\DAL\Database.php
+Line : 56
+Message : SQLSTATE[42601]: Syntax error: 7 ERROR:  syntax error at or near "P"
+LINE 1: DELETE P FROM post AS P WHERE P.id IN ($1);
+               ^
+Pile d'appel : #0 C:\wamp64\www\blog\Framework\DAL\Database.php(56): PDOStatement->execute(Array)
+#1 C:\wamp64\www\blog\DAL\Post\PostDAL.php(128): Framework\DAL\Database->Execute('DELETE P FROM p...', Array)
+#2 C:\wamp64\www\blog\BLL\Post\PostBLL.php(62): DAL\Post\PostDAL->Delete(Array)
+#3 C:\wamp64\www\blog\Controller\Post\PostController.php(106): BLL\Post\PostBLL->Delete(Array)
+#4 [internal function]: Controller\Post\PostController->Delete(Array)
+#5 C:\wamp64\www\blog\Framework\Controller\FrontController.php(40): call_user_func_array(Array, Array)
+#6 C:\wamp64\www\blog\Framework\App.php(19): Framework\Controller\FrontController->Run()
+#7 C:\wamp64\www\blog\index.php(13): Framework\App->Run()
+#8 {main}
+################################################################################################
+################################################################################################
+DateTime : 07/07/2020 19:39:32 UTC+00:00
+File : C:\wamp64\www\blog\Framework\DAL\Database.php
+Line : 56
+Message : SQLSTATE[42601]: Syntax error: 7 ERROR:  syntax error at or near "H"
+LINE 1: DELETE H FROM history AS H INNER JOIN post AS P ON H.id = P....
+               ^
+Pile d'appel : #0 C:\wamp64\www\blog\Framework\DAL\Database.php(56): PDOStatement->execute(Array)
+#1 C:\wamp64\www\blog\DAL\History\HistoryDAL.php(66): Framework\DAL\Database->Execute('DELETE H FROM h...', Array)
+#2 C:\wamp64\www\blog\DAL\Post\PostDAL.php(131): DAL\History\HistoryDAL->DeleteFromPostIds(Array)
+#3 C:\wamp64\www\blog\BLL\Post\PostBLL.php(62): DAL\Post\PostDAL->Delete(Array)
+#4 C:\wamp64\www\blog\Controller\Post\PostController.php(106): BLL\Post\PostBLL->Delete(Array)
+#5 [internal function]: Controller\Post\PostController->Delete(Array)
+#6 C:\wamp64\www\blog\Framework\Controller\FrontController.php(40): call_user_func_array(Array, Array)
+#7 C:\wamp64\www\blog\Framework\App.php(19): Framework\Controller\FrontController->Run()
+#8 C:\wamp64\www\blog\index.php(13): Framework\App->Run()
+#9 {main}
+################################################################################################
+################################################################################################
+DateTime : 07/07/2020 19:40:00 UTC+00:00
+File : C:\wamp64\www\blog\Framework\DAL\Database.php
+Line : 56
+Message : SQLSTATE[42601]: Syntax error: 7 ERROR:  syntax error at or near "INNER"
+LINE 1: DELETE FROM history AS H INNER JOIN post AS P ON H.id = P.cr...
+                                 ^
+Pile d'appel : #0 C:\wamp64\www\blog\Framework\DAL\Database.php(56): PDOStatement->execute(Array)
+#1 C:\wamp64\www\blog\DAL\History\HistoryDAL.php(66): Framework\DAL\Database->Execute('DELETE FROM his...', Array)
+#2 C:\wamp64\www\blog\DAL\Post\PostDAL.php(131): DAL\History\HistoryDAL->DeleteFromPostIds(Array)
+#3 C:\wamp64\www\blog\BLL\Post\PostBLL.php(62): DAL\Post\PostDAL->Delete(Array)
+#4 C:\wamp64\www\blog\Controller\Post\PostController.php(106): BLL\Post\PostBLL->Delete(Array)
+#5 [internal function]: Controller\Post\PostController->Delete(Array)
+#6 C:\wamp64\www\blog\Framework\Controller\FrontController.php(40): call_user_func_array(Array, Array)
+#7 C:\wamp64\www\blog\Framework\App.php(19): Framework\Controller\FrontController->Run()
+#8 C:\wamp64\www\blog\index.php(13): Framework\App->Run()
+#9 {main}
+################################################################################################
+################################################################################################
+DateTime : 07/07/2020 19:42:08 UTC+00:00
+File : C:\wamp64\www\blog\Framework\DAL\Database.php
+Line : 56
+Message : SQLSTATE[42601]: Syntax error: 7 ERROR:  cannot insert multiple commands into a prepared statement
+Pile d'appel : #0 C:\wamp64\www\blog\Framework\DAL\Database.php(56): PDOStatement->execute(Array)
+#1 C:\wamp64\www\blog\DAL\History\HistoryDAL.php(66): Framework\DAL\Database->Execute('DELETE FROM his...', Array)
+#2 C:\wamp64\www\blog\DAL\Post\PostDAL.php(131): DAL\History\HistoryDAL->DeleteFromPostIds(Array)
+#3 C:\wamp64\www\blog\BLL\Post\PostBLL.php(62): DAL\Post\PostDAL->Delete(Array)
+#4 C:\wamp64\www\blog\Controller\Post\PostController.php(106): BLL\Post\PostBLL->Delete(Array)
+#5 [internal function]: Controller\Post\PostController->Delete(Array)
+#6 C:\wamp64\www\blog\Framework\Controller\FrontController.php(40): call_user_func_array(Array, Array)
+#7 C:\wamp64\www\blog\Framework\App.php(19): Framework\Controller\FrontController->Run()
+#8 C:\wamp64\www\blog\index.php(13): Framework\App->Run()
+#9 {main}
+################################################################################################
+################################################################################################
+DateTime : 07/07/2020 19:43:23 UTC+00:00
+File : C:\wamp64\www\blog\Framework\DAL\Database.php
+Line : 56
+Message : SQLSTATE[42703]: Undefined column: 7 ERROR:  column pu.hsitory_id does not exist
+LINE 1: ...OM history AS H USING post_update PU WHERE H.id = PU.hsitory...
+                                                             ^
+HINT:  Perhaps you meant to reference the column "pu.history_id".
+Pile d'appel : #0 C:\wamp64\www\blog\Framework\DAL\Database.php(56): PDOStatement->execute(Array)
+#1 C:\wamp64\www\blog\DAL\History\HistoryDAL.php(67): Framework\DAL\Database->Execute(' DELETE FROM hi...', Array)
+#2 C:\wamp64\www\blog\DAL\Post\PostDAL.php(131): DAL\History\HistoryDAL->DeleteFromPostIds(Array)
+#3 C:\wamp64\www\blog\BLL\Post\PostBLL.php(62): DAL\Post\PostDAL->Delete(Array)
+#4 C:\wamp64\www\blog\Controller\Post\PostController.php(106): BLL\Post\PostBLL->Delete(Array)
+#5 [internal function]: Controller\Post\PostController->Delete(Array)
+#6 C:\wamp64\www\blog\Framework\Controller\FrontController.php(40): call_user_func_array(Array, Array)
+#7 C:\wamp64\www\blog\Framework\App.php(19): Framework\Controller\FrontController->Run()
+#8 C:\wamp64\www\blog\index.php(13): Framework\App->Run()
+#9 {main}
+################################################################################################
+################################################################################################
+DateTime : 07/07/2020 19:43:46 UTC+00:00
+File : C:\wamp64\www\blog\Framework\DAL\Database.php
+Line : 56
+Message : SQLSTATE[42601]: Syntax error: 7 ERROR:  syntax error at or near "PU"
+LINE 1: DELETE PU FROM post_update AS PU WHERE PU.post_id IN ($1);
+               ^
+Pile d'appel : #0 C:\wamp64\www\blog\Framework\DAL\Database.php(56): PDOStatement->execute(Array)
+#1 C:\wamp64\www\blog\DAL\Post\PostUpdateDAL.php(59): Framework\DAL\Database->Execute('DELETE PU FROM ...', Array)
+#2 C:\wamp64\www\blog\DAL\Post\PostDAL.php(134): DAL\Post\PostUpdateDAL->DeleteFromPostIds(Array)
+#3 C:\wamp64\www\blog\BLL\Post\PostBLL.php(62): DAL\Post\PostDAL->Delete(Array)
+#4 C:\wamp64\www\blog\Controller\Post\PostController.php(106): BLL\Post\PostBLL->Delete(Array)
+#5 [internal function]: Controller\Post\PostController->Delete(Array)
+#6 C:\wamp64\www\blog\Framework\Controller\FrontController.php(40): call_user_func_array(Array, Array)
+#7 C:\wamp64\www\blog\Framework\App.php(19): Framework\Controller\FrontController->Run()
+#8 C:\wamp64\www\blog\index.php(13): Framework\App->Run()
+#9 {main}
+################################################################################################
+################################################################################################
+DateTime : 07/07/2020 19:50:21 UTC+00:00
+File : C:\wamp64\www\blog\Framework\DAL\Database.php
+Line : 56
+Message : SQLSTATE[23503]: Foreign key violation: 7 ERROR:  update or delete on table "history" violates foreign key constraint "post_creation_history_id_fkey" on table "post"
+DETAIL:  Key (id)=(10) is still referenced from table "post".
+Pile d'appel : #0 C:\wamp64\www\blog\Framework\DAL\Database.php(56): PDOStatement->execute(Array)
+#1 C:\wamp64\www\blog\DAL\History\HistoryDAL.php(63): Framework\DAL\Database->Execute('DELETE FROM his...', Array)
+#2 C:\wamp64\www\blog\DAL\Post\PostDAL.php(132): DAL\History\HistoryDAL->DeleteFromPostIds(Array)
+#3 C:\wamp64\www\blog\BLL\Post\PostBLL.php(62): DAL\Post\PostDAL->Delete(Array)
+#4 C:\wamp64\www\blog\Controller\Post\PostController.php(106): BLL\Post\PostBLL->Delete(Array)
+#5 [internal function]: Controller\Post\PostController->Delete(Array)
+#6 C:\wamp64\www\blog\Framework\Controller\FrontController.php(40): call_user_func_array(Array, Array)
+#7 C:\wamp64\www\blog\Framework\App.php(19): Framework\Controller\FrontController->Run()
+#8 C:\wamp64\www\blog\index.php(13): Framework\App->Run()
+#9 {main}
+################################################################################################
+################################################################################################
+DateTime : 07/07/2020 19:58:20 UTC+00:00
+File : C:\wamp64\www\blog\Framework\DAL\Database.php
+Line : 56
+Message : SQLSTATE[HY093]: Invalid parameter number: :post_id0
+Pile d'appel : #0 C:\wamp64\www\blog\Framework\DAL\Database.php(56): PDOStatement->execute(Array)
+#1 C:\wamp64\www\blog\Framework\DAL\Database.php(70): Framework\DAL\Database->Execute('SELECT creation...', Array)
+#2 C:\wamp64\www\blog\DAL\Post\PostDAL.php(129): Framework\DAL\Database->Read('SELECT creation...', Array)
+#3 C:\wamp64\www\blog\BLL\Post\PostBLL.php(62): DAL\Post\PostDAL->Delete(Array)
+#4 C:\wamp64\www\blog\Controller\Post\PostController.php(106): BLL\Post\PostBLL->Delete(Array)
+#5 [internal function]: Controller\Post\PostController->Delete(Array)
+#6 C:\wamp64\www\blog\Framework\Controller\FrontController.php(40): call_user_func_array(Array, Array)
+#7 C:\wamp64\www\blog\Framework\App.php(19): Framework\Controller\FrontController->Run()
+#8 C:\wamp64\www\blog\index.php(13): Framework\App->Run()
+#9 {main}
+################################################################################################
+################################################################################################
+DateTime : 07/07/2020 20:16:15 UTC+00:00
+File : C:\wamp64\www\blog\Framework\DAL\Database.php
+Line : 56
+Message : SQLSTATE[HY093]: Invalid parameter number: :CreationHistoryId
+Pile d'appel : #0 C:\wamp64\www\blog\Framework\DAL\Database.php(56): PDOStatement->execute(Array)
+#1 C:\wamp64\www\blog\DAL\Post\PostDAL.php(91): Framework\DAL\Database->Execute('UPDATE post SET...', Array)
+#2 C:\wamp64\www\blog\BLL\Post\PostBLL.php(41): DAL\Post\PostDAL->Update(Array)
+#3 C:\wamp64\www\blog\Controller\Post\PostController.php(133): BLL\Post\PostBLL->Update(Array)
+#4 [internal function]: Controller\Post\PostController->Update(Array)
+#5 C:\wamp64\www\blog\Framework\Controller\FrontController.php(40): call_user_func_array(Array, Array)
+#6 C:\wamp64\www\blog\Framework\App.php(19): Framework\Controller\FrontController->Run()
+#7 C:\wamp64\www\blog\index.php(13): Framework\App->Run()
+#8 {main}
+################################################################################################
+################################################################################################
+DateTime : 07/07/2020 20:18:03 UTC+00:00
+File : C:\wamp64\www\blog\Framework\DAL\Database.php
+Line : 56
+Message : SQLSTATE[42601]: Syntax error: 7 ERROR:  syntax error at or near ")"
+LINE 5:             , is_published = $5);
+                                       ^
+Pile d'appel : #0 C:\wamp64\www\blog\Framework\DAL\Database.php(56): PDOStatement->execute(Array)
+#1 C:\wamp64\www\blog\DAL\Post\PostDAL.php(90): Framework\DAL\Database->Execute('UPDATE post SET...', Array)
+#2 C:\wamp64\www\blog\BLL\Post\PostBLL.php(41): DAL\Post\PostDAL->Update(Array)
+#3 C:\wamp64\www\blog\Controller\Post\PostController.php(133): BLL\Post\PostBLL->Update(Array)
+#4 [internal function]: Controller\Post\PostController->Update(Array)
+#5 C:\wamp64\www\blog\Framework\Controller\FrontController.php(40): call_user_func_array(Array, Array)
+#6 C:\wamp64\www\blog\Framework\App.php(19): Framework\Controller\FrontController->Run()
+#7 C:\wamp64\www\blog\index.php(13): Framework\App->Run()
+#8 {main}
+################################################################################################
+################################################################################################
+DateTime : 07/07/2020 20:21:55 UTC+00:00
+File : C:\wamp64\www\blog\Framework\DAL\Database.php
+Line : 56
+Message : SQLSTATE[22P02]: Invalid text representation: 7 ERROR:  invalid input syntax for type integer: "Array"
+Pile d'appel : #0 C:\wamp64\www\blog\Framework\DAL\Database.php(56): PDOStatement->execute(Array)
+#1 C:\wamp64\www\blog\Framework\DAL\Database.php(70): Framework\DAL\Database->Execute('SELECT H.id\r\n  ...', Array)
+#2 C:\wamp64\www\blog\DAL\History\HistoryDAL.php(93): Framework\DAL\Database->Read('SELECT H.id\r\n  ...', Array)
+#3 C:\wamp64\www\blog\DAL\Post\PostDAL.php(263): DAL\History\HistoryDAL->Load(Array)
+#4 C:\wamp64\www\blog\BLL\Post\PostBLL.php(83): DAL\Post\PostDAL->Load(Object(Model\Post\PostFilter))
+#5 C:\wamp64\www\blog\Controller\Post\PostController.php(26): BLL\Post\PostBLL->Load(Object(Model\Post\PostFilter))
+#6 [internal function]: Controller\Post\PostController->DisplayAllAsTable(Array)
+#7 C:\wamp64\www\blog\Framework\Controller\FrontController.php(40): call_user_func_array(Array, Array)
+#8 C:\wamp64\www\blog\Framework\App.php(19): Framework\Controller\FrontController->Run()
+#9 C:\wamp64\www\blog\index.php(13): Framework\App->Run()
+#10 {main}
+################################################################################################
+################################################################################################
+DateTime : 07/07/2020 20:25:28 UTC+00:00
+File : C:\wamp64\www\blog\Framework\DAL\Database.php
+Line : 56
+Message : SQLSTATE[22P02]: Invalid text representation: 7 ERROR:  invalid input syntax for type integer: "Array"
+Pile d'appel : #0 C:\wamp64\www\blog\Framework\DAL\Database.php(56): PDOStatement->execute(Array)
+#1 C:\wamp64\www\blog\Framework\DAL\Database.php(70): Framework\DAL\Database->Execute('SELECT H.id\r\n  ...', Array)
+#2 C:\wamp64\www\blog\DAL\History\HistoryDAL.php(93): Framework\DAL\Database->Read('SELECT H.id\r\n  ...', Array)
+#3 C:\wamp64\www\blog\DAL\Post\PostDAL.php(263): DAL\History\HistoryDAL->Load(Array)
+#4 C:\wamp64\www\blog\BLL\Post\PostBLL.php(83): DAL\Post\PostDAL->Load(Object(Model\Post\PostFilter))
+#5 C:\wamp64\www\blog\Controller\Post\PostController.php(26): BLL\Post\PostBLL->Load(Object(Model\Post\PostFilter))
+#6 [internal function]: Controller\Post\PostController->DisplayAllAsTable(Array)
+#7 C:\wamp64\www\blog\Framework\Controller\FrontController.php(40): call_user_func_array(Array, Array)
+#8 C:\wamp64\www\blog\Framework\App.php(19): Framework\Controller\FrontController->Run()
+#9 C:\wamp64\www\blog\index.php(13): Framework\App->Run()
+#10 {main}
+################################################################################################
+################################################################################################
+DateTime : 07/07/2020 20:36:01 UTC+00:00
+File : C:\wamp64\www\blog\Framework\DAL\Database.php
+Line : 56
+Message : SQLSTATE[42601]: Syntax error: 7 ERROR:  syntax error at or near "ORDER"
+LINE 8:                       FROM website_user AS U; ORDER BY U.id;
+                                                      ^
+Pile d'appel : #0 C:\wamp64\www\blog\Framework\DAL\Database.php(56): PDOStatement->execute(Array)
+#1 C:\wamp64\www\blog\Framework\DAL\Database.php(70): Framework\DAL\Database->Execute('SELECT U.id\n   ...', Array)
+#2 C:\wamp64\www\blog\DAL\Admin\User\UserDAL.php(276): Framework\DAL\Database->Read('SELECT U.id\n   ...', Array)
+#3 C:\wamp64\www\blog\DAL\History\HistoryDAL.php(114): DAL\Admin\User\UserDAL->Load()
+#4 C:\wamp64\www\blog\DAL\Post\PostDAL.php(277): DAL\History\HistoryDAL->Load(Array)
+#5 C:\wamp64\www\blog\BLL\Post\PostBLL.php(83): DAL\Post\PostDAL->Load(Object(Model\Post\PostFilter))
+#6 C:\wamp64\www\blog\Controller\Post\PostController.php(26): BLL\Post\PostBLL->Load(Object(Model\Post\PostFilter))
+#7 [internal function]: Controller\Post\PostController->DisplayAllAsTable(Array)
+#8 C:\wamp64\www\blog\Framework\Controller\FrontController.php(40): call_user_func_array(Array, Array)
+#9 C:\wamp64\www\blog\Framework\App.php(19): Framework\Controller\FrontController->Run()
+#10 C:\wamp64\www\blog\index.php(13): Framework\App->Run()
+#11 {main}
+################################################################################################
+################################################################################################
+DateTime : 07/07/2020 20:41:54 UTC+00:00
+File : C:\wamp64\www\blog\Framework\DAL\Database.php
+Line : 56
+Message : SQLSTATE[22P02]: Invalid text representation: 7 ERROR:  invalid input syntax for type boolean: ""
+Pile d'appel : #0 C:\wamp64\www\blog\Framework\DAL\Database.php(56): PDOStatement->execute(Array)
+#1 C:\wamp64\www\blog\DAL\Post\PostDAL.php(90): Framework\DAL\Database->Execute('UPDATE post SET...', Array)
+#2 C:\wamp64\www\blog\BLL\Post\PostBLL.php(41): DAL\Post\PostDAL->Update(Array)
+#3 C:\wamp64\www\blog\Controller\Post\PostController.php(133): BLL\Post\PostBLL->Update(Array)
+#4 [internal function]: Controller\Post\PostController->Update(Array)
+#5 C:\wamp64\www\blog\Framework\Controller\FrontController.php(40): call_user_func_array(Array, Array)
+#6 C:\wamp64\www\blog\Framework\App.php(19): Framework\Controller\FrontController->Run()
+#7 C:\wamp64\www\blog\index.php(13): Framework\App->Run()
+#8 {main}
+################################################################################################
+################################################################################################
+DateTime : 08/07/2020 10:21:58 UTC+00:00
+File : C:\wamp64\www\blog\Framework\DAL\Database.php
+Line : 56
+Message : SQLSTATE[42883]: Undefined function: 7 ERROR:  operator does not exist: boolean = integer
+LINE 9: ...id = H.id WHERE P.slug IN ($1) AND P.is_published = 1 ORDER ...
+                                                             ^
+HINT:  No operator matches the given name and argument types. You might need to add explicit type casts.
+Pile d'appel : #0 C:\wamp64\www\blog\Framework\DAL\Database.php(56): PDOStatement->execute(Array)
+#1 C:\wamp64\www\blog\Framework\DAL\Database.php(70): Framework\DAL\Database->Execute('SELECT P.id AS ...', Array)
+#2 C:\wamp64\www\blog\DAL\Post\PostDAL.php(256): Framework\DAL\Database->Read('SELECT P.id AS ...', Array)
+#3 C:\wamp64\www\blog\BLL\Post\PostBLL.php(83): DAL\Post\PostDAL->Load(Object(Model\Post\PostFilter))
+#4 C:\wamp64\www\blog\Controller\Post\PostController.php(52): BLL\Post\PostBLL->Load(Object(Model\Post\PostFilter))
+#5 [internal function]: Controller\Post\PostController->DisplayOne(Array)
+#6 C:\wamp64\www\blog\Framework\Controller\FrontController.php(40): call_user_func_array(Array, Array)
+#7 C:\wamp64\www\blog\Framework\App.php(19): Framework\Controller\FrontController->Run()
+#8 C:\wamp64\www\blog\index.php(13): Framework\App->Run()
+#9 {main}
+################################################################################################
+################################################################################################
+DateTime : 08/07/2020 10:46:48 UTC+00:00
+File : C:\wamp64\www\blog\Framework\DAL\Database.php
+Line : 56
+Message : SQLSTATE[42703]: Undefined column: 7 ERROR:  column "post_id" does not exist
+LINE 6:             WHERE post_id = $6;
+                          ^
+Pile d'appel : #0 C:\wamp64\www\blog\Framework\DAL\Database.php(56): PDOStatement->execute(Array)
+#1 C:\wamp64\www\blog\DAL\Post\PostDAL.php(92): Framework\DAL\Database->Execute('UPDATE post SET...', Array)
+#2 C:\wamp64\www\blog\BLL\Post\PostBLL.php(41): DAL\Post\PostDAL->Update(Array)
+#3 C:\wamp64\www\blog\Controller\Post\PostController.php(156): BLL\Post\PostBLL->Update(Array)
+#4 [internal function]: Controller\Post\PostController->Update(Array)
+#5 C:\wamp64\www\blog\Framework\Controller\FrontController.php(40): call_user_func_array(Array, Array)
+#6 C:\wamp64\www\blog\Framework\App.php(19): Framework\Controller\FrontController->Run()
+#7 C:\wamp64\www\blog\index.php(13): Framework\App->Run()
+#8 {main}
+################################################################################################

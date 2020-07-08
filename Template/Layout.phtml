@@ -8,10 +8,10 @@ use \Tools\Helper\UserHelper;
 <html lang="fr-fr">
 	<head>
 		<meta charset="UTF-8">
-		<title>HK</title>
+		<title>EMILIE</title>
 		<link rel="icon" href="<?= ResourcesHelper::GetPath("Assets/images/icons/watermelon.png"); ?>">
-		<link rel="stylesheet" type="text/css" href="<?= ResourcesHelper::GetPath("Assets/css/style.css"); ?>"> 	
-		<link href="https://fonts.googleapis.com/css?family=Montserrat:200,300,400,500,600,700|Roboto:400,700" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="<?= ResourcesHelper::GetPath("Assets/css/style.css"); ?>">
+		<link href="https://fonts.googleapis.com/css?family=Montserrat:200,300,400,500,600,700|Roboto:400,600,700" rel="stylesheet">
 		<script type="text/javascript" src="<?= ResourcesHelper::GetPath("Assets/js/jquery/jquery-3.3.1.min.js"); ?>"></script>
 		<script type="text/javascript" src="<?= ResourcesHelper::GetPath("Assets/js/jquery/jquery-migrate-1.4.1.min.js"); ?>"></script>
 	</head>
@@ -20,34 +20,33 @@ use \Tools\Helper\UserHelper;
 			<nav class="nav">
 				<section class="nav__wrapper">
 					<span class="nav__brand">
-						<a href="<?= RoutesHelper::Path("DisplayHome"); ?>" tabindex="0">HK</a>
+						<a href="<?= RoutesHelper::Path("DisplayHome"); ?>">EMILIE</a>
 					</span>
 
-					<span class="nav__menu-user-wrapper">
-						<span class="nav__menu">
-							<a class="nav__menu__item">Mon actu</a>
-							<a class="nav__menu__item" href="<?= RoutesHelper::Path("DisplayContact"); ?>">Contact</a>
-							<a class="nav__menu__item">C'est moi !</a>
-						</span>
+					<span class="nav__menu">
+						<a class="nav__menu__item">Accueil</a>
+						<a class="nav__menu__item">Articles</a>
+						<a class="nav__menu__item" href="<?= RoutesHelper::Path("DisplayContact"); ?>">Contact</a>
+						<a class="nav__menu__item">A propos</a>
+					</span>
 
 <?php if (UserHelper::IsLogin()): ?>
-						<span class="nav__user">
-							<img id="avatar" class="nav__user__avatar" src="<?= UserHelper::GetAvatarUrl(); ?>"/>
-							<section id="avatar-tooltip" class="nav__user__avatar-tooltip hidden">
-								<section class="nav__user__avatar-tooltip__header">
-									<section>
-										<img src="<?= UserHelper::GetAvatarUrl(); ?>"/>
-									</section>
-									<p>Bonjour <?= UserHelper::GetName(); ?> !</p>
+					<span class="nav__user">
+						<img id="avatar" class="nav__user__avatar" src="<?= UserHelper::GetAvatarUrl(); ?>"/>
+						<section id="avatar-tooltip" class="nav__user__avatar-tooltip hidden">
+							<section class="nav__user__avatar-tooltip__header">
+								<section>
+									<img src="<?= UserHelper::GetAvatarUrl(); ?>"/>
 								</section>
-								<section class="nav__user__avatar-tooltip__footer">
-									<a class="button outlined-button light" href="">Profil</a>
-									<a id="logout-link" class="button outlined-button light" href="<?= RoutesHelper::Path("UserLogoutAdmin"); ?>">Se déconnecter</a>
-								</section>
+								<p>Bonjour <?= UserHelper::GetName(); ?> !</p>
 							</section>
-						</span>
-<?php endif; ?>
+							<section class="nav__user__avatar-tooltip__footer">
+								<a class="button outlined-button light" href="">Profil</a>
+								<a id="logout-link" class="button outlined-button light" href="<?= RoutesHelper::Path("UserLogoutAdmin"); ?>">Se déconnecter</a>
+							</section>
+						</section>
 					</span>
+<?php endif; ?>
 				</section>
 			</nav>
 		</header>

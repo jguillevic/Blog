@@ -4,9 +4,11 @@ namespace Model\Post;
 
 class PostFilter
 {
-    private $ids = null;
+    private $ids = [];
+    private $slugs = [];
     private $startingDateTime = null;
     private $endingDateTime = null;
+    private $publishedOnly = false;
 
     public function GetIds() : array
     {
@@ -20,7 +22,19 @@ class PostFilter
         return $this;
     }
 
-    public function GetStartingDateTime() : \DateTime
+    public function GetSlugs() : array
+    {
+        return $this->slugs;
+    }
+
+    public function SetSlugs(array $slugs) : PostFilter
+    {
+        $this->slugs = $slugs;
+
+        return $this;
+    }
+
+    public function GetStartingDateTime()
     {
         return $this->startingDateTime;
     }
@@ -32,14 +46,26 @@ class PostFilter
         return $this;
     }
 
-    public function GetEndingDate() : \DateTime
+    public function GetEndingDateTime()
     {
         return $this->endingDateTime;
     }
 
-    public function SetEndingDate(\DateTime $endingDateTime) : PostFilter
+    public function SetEndingDateTime(\DateTime $endingDateTime) : PostFilter
     {
         $this->endingDateTime = $endingDateTime;
+
+        return $this;
+    }
+
+    public function GetPublishedOnly() : bool
+    {
+        return $this->publishedOnly;
+    }
+
+    public function SetPublishedOnly(bool $publishedOnly) : PostFilter
+    {
+        $this->publishedOnly = $publishedOnly;
 
         return $this;
     }

@@ -1,5 +1,6 @@
 <?php
 use Framework\Tools\Helper\RoutesHelper;
+use \Framework\Tools\Helper\ResourcesHelper;
 
 $user = $params["User"];
 
@@ -52,4 +53,4 @@ $hasPasswordErrors = $violations->HasErrors("Password");
     </section>
 </section>
 
-<script src="../Assets/js/module/user/login.js"></script>
+<script src="<?= ResourcesHelper::GetPath("Assets/js/module/user/login.js"); ?>"></script>

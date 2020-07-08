@@ -24,6 +24,7 @@
 @import 'module/input';
 @import 'module/wrapper';
 @import 'module/information';
+@import 'module/table';
 
 @import 'module/user/login';
 @import 'module/user/register';
@@ -32,13 +33,9 @@
 
 @import 'module/contact/display';
 
-@import 'module/meal/display';
-
-@import 'module/shoppinglist/display';
-
 @import 'module/policy/privacy/display';
 @import 'module/policy/terms/display';
 
-@import 'module/recipe/display';
+@import 'module/post/display-as-table';
 
 /* Theme */

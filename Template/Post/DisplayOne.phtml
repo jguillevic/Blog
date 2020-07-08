@@ -1,0 +1,28 @@
+<?php
+use Framework\Tools\Helper\RoutesHelper;
+use Model\Post\Post;
+
+$post = $params["Post"];
+?>
+
+<section class="l-content content">
+    <article>
+        <header>
+            <h1><?= $post->GetTitle(); ?></h1>
+            <p><?= $post->GetDescription(); ?></p>
+            <section>
+                <p>Créée <time datetime="<?= $post->GetCreationHistory()->GetDateTime()->format("Y-m-d H:i:s") ?>">le <?= $post->GetCreationHistory()->GetDateTime()->format("d/m/Y") ?> à <?= $post->GetCreationHistory()->GetDateTime()->format("H:i:s") ?></time> par <?= $post->GetCreationHistory()->GetUser()->GetLogin(); ?></p>
+                <?php if(count($post->GetUpdateHistories()) > 0): ?>
+                    <?php 
+                        $updateHistories = $post->GetUpdateHistories();
+                        $lastUpdateHistory = end($updateHistories); 
+                    ?>
+                <p>Dernière modification <time datetime="<?= $lastUpdateHistory->GetDateTime()->format("Y-m-d H:i:s") ?>">le <?= $lastUpdateHistory->GetDateTime()->format("d/m/Y"); ?> à <?= $lastUpdateHistory->GetDateTime()->format("H:i:s"); ?></time> par <?= $lastUpdateHistory->GetUser()->GetLogin(); ?></p>
+                <?php endif; ?>
+            </section>
+        </header>
+        <section>
+            <?= $post->GetContent(); ?>
+        </section>
+    </article>
+</section>

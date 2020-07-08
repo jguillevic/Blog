@@ -1,0 +1,38 @@
+.post_display-as-table
+{
+    padding-top: 2em;
+
+    &__buttons
+    {
+        padding-top: 1em;
+        padding-bottom: 1em;
+
+        text-align: left;
+    }
+
+    &__table
+    {
+        padding-top: 1em;
+
+        &__buttons-wrapper
+        {
+            @extend .wrapper-row-center;
+
+            & > a
+            {
+                margin-left: 0.15em;
+                margin-right: 0.15em;
+
+                &:first-child
+                {
+                    margin-left: 0;
+                }
+
+                &:last-child
+                {
+                    margin-right: 0;
+                }
+            }
+        }
+    }
+}

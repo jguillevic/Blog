@@ -24,7 +24,8 @@ class ContactDAL
         try
         {
             $query = "INSERT INTO contact (first_name, last_name, email, content)
-                      VALUES (:FirstName, :LastName, :Email, :Content);";
+                      VALUES (:FirstName, :LastName, :Email, :Content)
+                      RESULT id;";
 
             $this->db->BeginTransaction();
 
@@ -37,7 +38,9 @@ class ContactDAL
                     , ":Content" => $contact->GetContent()
                 ];
 
-                $this->db->Execute($query, $params);
+                $rows = $this->db->Read($query, $params);
+
+                $contact->SetId($rows[0]["id"]);
             }
 
             $this->db->Commit();

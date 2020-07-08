@@ -52,7 +52,7 @@ class PostUpdateDAL
         {
             $params = [];
 
-            $query = "DELETE PU FROM post_update AS PU WHERE " . DALHelper::SetArrayParams($postIds, "PU", "post_id", $params) . ";";
+            $query = "DELETE FROM post_update AS PU WHERE " . DALHelper::SetArrayParams($postIds, "PU", "post_id", $params) . ";";
 
             $this->db->BeginTransaction();
 

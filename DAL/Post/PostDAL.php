@@ -27,7 +27,8 @@ class PostDAL
         try
         {
             $query = "INSERT INTO post (title, slug, description, content, is_published, creation_history_id)
-            VALUES (:Title, :Slug, :Description, :Content, :IsPublished, :CreationHistoryId);";
+            VALUES (:Title, :Slug, :Description, :Content, :IsPublished, :CreationHistoryId)
+            RETURNING id;";
 
             $this->db->BeginTransaction();
 
@@ -42,11 +43,13 @@ class PostDAL
                     , ":Slug" => $post->GetSlug()
                     , ":Description" => $post->GetDescription()
                     , ":Content" => $post->GetContent()
-                    , ":IsPublished" => $post->GetIsPublished()
+                    , ":IsPublished" => ($post->GetIsPublished() ? 1 : 0)
                     , "CreationHistoryId" => $post->GetCreationHistory()->GetId()
                 ];
 
-                $this->db->Execute($query, $params);
+                $rows = $this->db->Read($query, $params);
+
+                $post->SetId($rows[0]["id"]);
             }
 
             $this->db->Commit();
@@ -67,12 +70,13 @@ class PostDAL
             , slug = :Slug
             , description = :Description
             , content = :Content
-            , is_published = :IsPublished);";
+            , is_published = :IsPublished
+            WHERE id = :Id;";
 
             $this->db->BeginTransaction();
 
             $historyDAL = new HistoryDAL($this->db);
-            $postUpdateDAL = new PostUpdatDAL($this->db); 
+            $postUpdateDAL = new PostUpdateDAL($this->db); 
 
             foreach ($posts as $post)
             {
@@ -81,17 +85,16 @@ class PostDAL
                     , ":Slug" => $post->GetSlug()
                     , ":Description" => $post->GetDescription()
                     , ":Content" => $post->GetContent()
-                    , ":IsPublished" => $post->GetIsPublished()
-                    , "CreationHistoryId" => $post->GetCreationHistory()->GetId()
+                    , ":IsPublished" => ($post->GetIsPublished() ? 1 : 0)
+                    , ":Id" => $post->GetId()
                 ];
 
                 $this->db->Execute($query, $params);
 
-                $history = end($post->GetUpdateHistories());
-                $historyDAL->Add($history);
+                $updateHistories = $post->GetUpdateHistories();
+                $history = end($updateHistories);
+                $historyDAL->Add([ $history ]);
                 $postUpdateDAL->Add($post->GetId(), $history->GetId());
-
-                $postUpdateDAL->Add();
             }
 
             $this->db->Commit();
@@ -108,27 +111,44 @@ class PostDAL
     {
         try
         {
-            $query = "DELETE P FROM post AS P";
+            $this->db->BeginTransaction();
 
+            $historyIds = [];
+
+            $params = [];
+            $query = "SELECT history_id FROM post_update AS PU WHERE " . DALHelper::SetArrayParams($ids, "PU", "post_id", $params) . " ;";
+            $rows = $this->db->Read($query, $params);
+            foreach ($rows as $row)
+            {
+                $historyIds[] = $row["history_id"];
+            }
+
+            $postUpdateDAL = new PostUpdateDAL($this->db);
+            $postUpdateDAL->DeleteFromPostIds($ids);
+
+            $params = [];
+            $query = "SELECT creation_history_id FROM post AS P WHERE " . DALHelper::SetArrayParams($ids, "P", "id", $params) . " ;";
+            $rows = $this->db->Read($query, $params);
+            foreach ($rows as $row)
+            {
+                $historyIds[] = $row["creation_history_id"];
+            }
+
+            $query = "DELETE FROM post AS P";
             $params = null;
-
             if ($ids != null)
             {
                 $params = [];
                 $query .= " WHERE " . DALHelper::SetArrayParams($ids, "P", "id", $params);
             }
-
             $query .= ";";
-
-            $this->db->BeginTransaction();
-
             $this->db->Execute($query, $params);
 
-            $historyDAL = new HistoryDAL($this->db);
-            $historyDAL->DeleteFromPostIds($ids);
-
-            $postUpdateDAL = new PostUpdateDAL($this->db);
-            $postUpdateDAL->DeleteFromPostIds($ids);
+            if (count($historyIds) > 0)
+            {
+                $historyDAL = new HistoryDAL($this->db);
+                $historyDAL->Delete($historyIds);
+            }
 
             $this->db->Commit();
         }
@@ -158,7 +178,7 @@ class PostDAL
 
             $whereAdded = false;
 
-            if ($filter->GetIds() != null)
+            if (count($filter->GetIds()) > 0)
             {
                 if (!$whereAdded)
                 {
@@ -167,6 +187,21 @@ class PostDAL
                 }
 
                 $query .= DALHelper::SetArrayParams($filter->GetIds(), "P", "id", $params);
+            }
+
+            if (count($filter->GetSlugs()) > 0)
+            {
+                if (!$whereAdded)
+                {
+                    $query .= " WHERE ";
+                    $whereAdded = true;
+                }
+                else
+                {
+                    $query .= " AND ";
+                }
+
+                $query .= DALHelper::SetArrayParams($filter->GetSlugs(), "P", "slug", $params);
             }
 
             if ($filter->GetStartingDateTime() != null)
@@ -201,7 +236,22 @@ class PostDAL
                 $params[":EndingDateTime"] = $filter->GetEndingDateTime()->format("Y-m-d H:i:s");
             }
 
-            $query .= " ORDER BY H.date_time;";
+            if ($filter->GetPublishedOnly())
+            {
+                if (!$whereAdded)
+                {
+                    $query .= " WHERE ";
+                    $whereAdded = true;
+                }
+                else
+                {
+                    $query .= " AND ";
+                }
+
+                $query .= "P.is_published = true";
+            }
+
+            $query .= " ORDER BY H.date, H.time;";
 
             $this->db->BeginTransaction();
 
@@ -231,27 +281,57 @@ class PostDAL
                 $posts[$postId] = $post; 
             }
 
-            $postUpdateDAL = new PostUpdateDAL($this->db);
-            $postUpdates = $postUpdateDAL->LoadFromPostIds($postIds);
+            $postUpdates = [];
+            if (count($postIds) > 0)
+            {
+                $postUpdateDAL = new PostUpdateDAL($this->db);
+                $postUpdates = $postUpdateDAL->LoadFromPostIds($postIds);
+            }
 
-            $historyIds = array_merge($creationHistoryIds, array_values($postUpdateIds));
-            $historyDAL = new HistoryDAL($this->db);
-            $histories = $historyDAL->Load($historyIds);
+            if (count($creationHistoryIds) > 0 || count($postUpdates) > 0)
+            {
+                $historyIds = [];
+
+                foreach ($creationHistoryIds as $creationHistoryId)
+                {
+                    $historyIds[] = $creationHistoryId;
+                }
+
+                foreach($postUpdates as $postUpdate)
+                {
+                    foreach ($postUpdate as $historyId)
+                    {
+                        $historyIds[] = $historyId;
+                    }
+                }
+
+                $historyDAL = new HistoryDAL($this->db);
+                $histories = $historyDAL->Load($historyIds);
+            }
 
             $this->db->Commit();
 
-            foreach ($posts as $postId => $post)
+            if (count($creationHistoryIds) > 0)
             {
-                $creationHistoryId = $creationHistoryIds[$postId];
-                $history = $histories[$creationHistoryId];
-                $post->SetCreationHistory($history);
+                foreach ($posts as $postId => $post)
+                {
+                    $creationHistoryId = $creationHistoryIds[$postId];
+                    $history = $histories[$creationHistoryId];
+                    $post->SetCreationHistory($history);
+                }
             }
 
-            foreach ($postUpdates as $postId => $historyId)
+            if (count($postUpdates) > 0)
             {
-                $history = $histories[$historyId];
-                $post = $posts[$postId];
-                $post->AddUpdateHistory($history);
+                foreach ($postUpdates as $postId => $historyIds)
+                {
+                    foreach ($historyIds as $historyId)
+                    {
+                        $history = $histories[$historyId];
+                        $post = $posts[$postId];
+                        $post->AddUpdateHistory($history);
+                    }
+                }
             }
 
             return $posts;

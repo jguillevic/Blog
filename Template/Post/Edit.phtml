@@ -6,17 +6,20 @@ $violations = $params["Violations"];
 $hasTitleErrors = $violations->HasErrors("Title");
 $hasDescriptionErrors = $violations->HasErrors("Description");
 $hasContentErrors = $violations->HasErrors("Content");
+$action = $params["Action"];
 ?>
 
 <section class="l-content content">
-    <section class="add_post">
-        <h1 class="add_post__title">Ajoutez un nouvel article !</h1>
+    <section class="edit_post">
+        <h1 class="edit_post__title"><?= $action == "ADD" ? "Ajoutez un nouvel article !" : "Modifiez votre article !" ?></h1>
 
-        <section class="add_post__wrapper"> 
-            <form  method="POST" action="<?= RoutesHelper::Path("AddPost"); ?>">
-                <div class="add_post__inputs-wrapper">
+        <section class="edit_post__wrapper"> 
+            <form  method="POST" action="<?= ($action == "ADD" ? RoutesHelper::Path("AddPost") : RoutesHelper::Path("UpdatePost")); ?>">
+                <div class="edit_post__inputs-wrapper">
 
-                    <div class="add_post__inputs-wrapper__input">
+                    <input type="hidden" id="id" name="id" value="<?= $post->GetId(); ?>">    
+
+                    <div class="edit_post__inputs-wrapper__input">
                         <div id="input-title" class="input input-title <?php if ($hasTitleErrors) echo "error"; ?>">
                             <input type="text" id="title" name="title" value="<?= $post->GetTitle(); ?>" placeholder="Titre" maxlength="200" required autofocus>
                         </div>
@@ -29,7 +32,7 @@ $hasContentErrors = $violations->HasErrors("Content");
 <?php endif; ?>
                     </div>
 
-                    <div class="add_post__inputs-wrapper__input">
+                    <div class="edit_post__inputs-wrapper__input">
                         <div id="input-description" class="input input-description <?php if ($hasDescriptionErrors) echo "error"; ?>">
                             <input type="text" id="description" name="description" value="<?= $post->GetDescription(); ?>" placeholder="Description" maxlength="200" required autofocus>
                         </div>
@@ -42,7 +45,7 @@ $hasContentErrors = $violations->HasErrors("Content");
 <?php endif; ?>
                     </div>
 
-                    <div class="add_post__inputs-wrapper__input">
+                    <div class="edit_post__inputs-wrapper__input">
                         <div id="input-content" class="input input-content <?php if ($hasContentErrors) echo "error"; ?>">
                             <textarea id="content" name="content" value="" placeholder="Contenu"></textarea>
                         </div>
@@ -55,7 +58,7 @@ $hasContentErrors = $violations->HasErrors("Content");
 <?php endif; ?>
                     </div>
 
-                    <div class="add_post__inputs-wrapper__input">
+                    <div class="edit_post__inputs-wrapper__input">
                         <div id="input-is_published" class="input-is_published checkbox large">
                             <div class="checkbox-container">
                                 <input type="checkbox" id="is_published" name="is_published" <?= $post->GetIsPublished() ? "checked" : ""; ?>>
@@ -66,8 +69,8 @@ $hasContentErrors = $violations->HasErrors("Content");
                     </div>
                 </div>
 
-                <div class="add_post__buttons-wrapper">
-                    <button id="add_post-button" class="button contained-button" type="submit">Enregistrer</button>
+                <div class="edit_post__buttons-wrapper">
+                    <button id="edit_post-button" class="button contained-button" type="submit">Enregistrer</button>
                 </div>
             </form>
         </section>

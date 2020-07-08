@@ -30,10 +30,28 @@
 		, "Name": "DisplayAllPostAsTable"
 	}
 	, {
+		"Path": "/Post"
+		, "Controller": "Post\\PostController"
+		, "Action": "DisplayOne"
+		, "Name": "DisplayOnePost"
+	}
+	, {
 		"Path": "/Admin/Post/Add"
 		, "Controller": "Post\\PostController"
 		, "Action": "Add"
 		, "Name": "AddPost"
+	}
+	, {
+		"Path": "/Admin/Post/Update"
+		, "Controller": "Post\\PostController"
+		, "Action": "Update"
+		, "Name": "UpdatePost"
+	}
+	, {
+		"Path": "/Admin/Post/Delete"
+		, "Controller": "Post\\PostController"
+		, "Action": "Delete"
+		, "Name": "DeletePost"
 	}
 	, {
 		"Path": "/Admin/User/Login"

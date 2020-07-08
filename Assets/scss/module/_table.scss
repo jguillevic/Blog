@@ -1,0 +1,53 @@
+.table
+{
+    color: $main-dark;
+
+    font-family: $text-font;
+	font-weight: 400;
+	font-size: 1.2em;
+
+    text-align: center;
+
+    width: 100%;
+
+    box-shadow: 0 0 0.3em rgba($color: $main-gray, $alpha: 0.8);
+
+    & > thead
+    {
+        background-color: $main-color;
+
+        color: $main-light;
+
+        font-family: $title-font;
+	    font-weight: 400;
+        font-size: 1.2em;
+
+        & > tr
+        {  
+            & > th
+            {
+                padding: 0.8em;
+            }
+        }
+    }
+
+    & > tbody
+    {
+        & > tr
+        {
+            border-bottom: 0.1em $main-color solid;
+
+            &:last-child
+            {
+                border-bottom: none;
+            }
+
+            & > td
+            {
+                padding: 0.9em;
+            }
+
+            
+        }
+    }
+}

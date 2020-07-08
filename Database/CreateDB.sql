@@ -21,16 +21,17 @@ CREATE TABLE contact
 	, PRIMARY KEY (id)
 );
 
-CREATE history
+CREATE TABLE history
 (
 	id SERIAL
-	, date_time DATETIME NOT NULL
+	, date DATE NOT NULL
+	, time TIME NOT NULL
 	, user_id INT NOT NULL
 	, PRIMARY KEY (id)
 	, FOREIGN KEY (user_id) REFERENCES website_user (id)
 );
 
-CREATE post
+CREATE TABLE post
 (
 	id SERIAL
 	, title VARCHAR(200) NOT NULL
@@ -43,7 +44,7 @@ CREATE post
 	, FOREIGN KEY (creation_history_id) REFERENCES history (id)
 );
 
-CREATE post_update
+CREATE TABLE post_update
 (
 	post_id INT NOT NULL
 	, history_id INT NOT NULL

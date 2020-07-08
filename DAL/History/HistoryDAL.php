@@ -6,6 +6,7 @@ use Framework\DAL\Database;
 use Framework\DAL\DALHelper;
 use Framework\Tools\Error\ErrorManager;
 use Model\History\History;
+use DAL\Admin\User\UserDAL;
 
 class HistoryDAL
 {
@@ -23,19 +24,23 @@ class HistoryDAL
     {
         try
         {
-            $query = "INSERT INTO history (date_time, user_id)
-            VALUES (:DateTime, :UserId);";
+            $query = "INSERT INTO history (date, time, user_id)
+            VALUES (:Date, :Time, :UserId)
+            RETURNING id;";
 
             $this->db->BeginTransaction();
 
             foreach ($histories as $history)
             {
                 $params = [
-                    ":DateTime" => $history->GetDateTime()
+                    ":Date" => $history->GetDateTime()->format("Y-m-d")
+                    , ":Time" => $history->GetDateTime()->format("H:i:s")
                     , ":UserId" => $history->GetUser()->GetId()
                 ];
 
-                $this->db->Execute($query, $params);
+                $rows = $this->db->Read($query, $params);
+
+                $history->SetId($rows[0]["id"]);
             }
 
             $this->db->Commit();
@@ -48,17 +53,14 @@ class HistoryDAL
         }
     }
 
-    public function DeleteFromPostIds(array $postIds) : void
+    public function Delete(array $ids) : void
     {
         try
         {
-            $params = [];
-
-            $query = "DELETE H FROM history AS H INNER JOIN post AS P ON H.id = P.creation_history_id WHERE " . DALHelper::SetArrayParams($postIds, "P", "id", $params) . ";";
-            $query .= " DELETE H FROM history AS H INNER JOIN post_update PU ON H.id = PU.hsitory_id WHERE ". DALHelper::SetArrayParams($postIds, "PU", "post_id", $params) . ";";
-
             $this->db->BeginTransaction();
 
+            $params = [];
+            $query = "DELETE FROM history AS H WHERE " . DALHelper::SetArrayParams($ids, "H", "id", $params) . ";";
             $this->db->Execute($query, $params);
 
             $this->db->Commit();
@@ -76,7 +78,8 @@ class HistoryDAL
         try
         {
             $query = "SELECT H.id
-                    , H.date_time
+                    , H.date
+                    , H.time
                     , H.user_id
                     FROM history AS H
                     WHERE ";
@@ -98,7 +101,7 @@ class HistoryDAL
                 $history = new History();
                 
                 $history->SetId($row["id"]);
-                $history->SetDateTime($row["date_time"]);
+                $history->SetDateTime(new \DateTime($row["date"] . " " . $row["time"]));
 
                 $userIds[$history->GetId()] = $row["user_id"];
 
