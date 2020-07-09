@@ -480,3 +480,54 @@ Pile d'appel : #0 C:\wamp64\www\blog\Framework\DAL\Database.php(56): PDOStatemen
 #7 C:\wamp64\www\blog\index.php(13): Framework\App->Run()
 #8 {main}
 ################################################################################################
+################################################################################################
+DateTime : 09/07/2020 11:14:57 UTC+00:00
+File : C:\wamp64\www\blog\Framework\DAL\Database.php
+Line : 27
+Message : SQLSTATE[08006] [7] could not connect to server: Connection timed out (0x0000274C/10060)
+	Is the server running on host "ec2-54-75-246-118.eu-west-1.compute.amazonaws.com" (54.75.246.118) and accepting
+	TCP/IP connections on port 5432?
+Pile d'appel : #0 C:\wamp64\www\blog\Framework\DAL\Database.php(27): PDO->__construct('pgsql:host=ec2-...', 'cyqluknzxdwvdt', '40dd80a0cd660cf...')
+#1 C:\wamp64\www\blog\Framework\DAL\Database.php(13): Framework\DAL\Database::GetPDO()
+#2 C:\wamp64\www\blog\BLL\Admin\User\UserBLL.php(16): Framework\DAL\Database->__construct()
+#3 C:\wamp64\www\blog\Controller\Admin\User\UserController.php(56): BLL\Admin\User\UserBLL->IsLoginExists('Khany')
+#4 [internal function]: Controller\Admin\User\UserController->Login(Array)
+#5 C:\wamp64\www\blog\Framework\Controller\FrontController.php(40): call_user_func_array(Array, Array)
+#6 C:\wamp64\www\blog\Framework\App.php(19): Framework\Controller\FrontController->Run()
+#7 C:\wamp64\www\blog\index.php(13): Framework\App->Run()
+#8 {main}
+################################################################################################
+################################################################################################
+DateTime : 09/07/2020 11:15:18 UTC+00:00
+File : C:\wamp64\www\blog\Framework\DAL\Database.php
+Line : 27
+Message : SQLSTATE[08006] [7] could not connect to server: Connection timed out (0x0000274C/10060)
+	Is the server running on host "ec2-54-75-246-118.eu-west-1.compute.amazonaws.com" (54.75.246.118) and accepting
+	TCP/IP connections on port 5432?
+Pile d'appel : #0 C:\wamp64\www\blog\Framework\DAL\Database.php(27): PDO->__construct('pgsql:host=ec2-...', 'cyqluknzxdwvdt', '40dd80a0cd660cf...')
+#1 C:\wamp64\www\blog\Framework\DAL\Database.php(13): Framework\DAL\Database::GetPDO()
+#2 C:\wamp64\www\blog\BLL\Admin\User\UserBLL.php(16): Framework\DAL\Database->__construct()
+#3 C:\wamp64\www\blog\Controller\Admin\User\UserController.php(56): BLL\Admin\User\UserBLL->IsLoginExists('Khany')
+#4 [internal function]: Controller\Admin\User\UserController->Login(Array)
+#5 C:\wamp64\www\blog\Framework\Controller\FrontController.php(40): call_user_func_array(Array, Array)
+#6 C:\wamp64\www\blog\Framework\App.php(19): Framework\Controller\FrontController->Run()
+#7 C:\wamp64\www\blog\index.php(13): Framework\App->Run()
+#8 {main}
+################################################################################################
+################################################################################################
+DateTime : 09/07/2020 11:15:39 UTC+00:00
+File : C:\wamp64\www\blog\Framework\DAL\Database.php
+Line : 27
+Message : SQLSTATE[08006] [7] could not connect to server: Connection timed out (0x0000274C/10060)
+	Is the server running on host "ec2-54-75-246-118.eu-west-1.compute.amazonaws.com" (54.75.246.118) and accepting
+	TCP/IP connections on port 5432?
+Pile d'appel : #0 C:\wamp64\www\blog\Framework\DAL\Database.php(27): PDO->__construct('pgsql:host=ec2-...', 'cyqluknzxdwvdt', '40dd80a0cd660cf...')
+#1 C:\wamp64\www\blog\Framework\DAL\Database.php(13): Framework\DAL\Database::GetPDO()
+#2 C:\wamp64\www\blog\BLL\Admin\User\UserBLL.php(16): Framework\DAL\Database->__construct()
+#3 C:\wamp64\www\blog\Controller\Admin\User\UserController.php(56): BLL\Admin\User\UserBLL->IsLoginExists('Khany')
+#4 [internal function]: Controller\Admin\User\UserController->Login(Array)
+#5 C:\wamp64\www\blog\Framework\Controller\FrontController.php(40): call_user_func_array(Array, Array)
+#6 C:\wamp64\www\blog\Framework\App.php(19): Framework\Controller\FrontController->Run()
+#7 C:\wamp64\www\blog\index.php(13): Framework\App->Run()
+#8 {main}
+################################################################################################

@@ -30,8 +30,9 @@ use \Tools\Helper\UserHelper;
 						<a class="nav__menu__item">A propos</a>
 					</span>
 
-<?php if (UserHelper::IsLogin()): ?>
+
 					<span class="nav__user">
+<?php if (UserHelper::IsLogin()): ?>
 						<img id="avatar" class="nav__user__avatar" src="<?= UserHelper::GetAvatarUrl(); ?>"/>
 						<section id="avatar-tooltip" class="nav__user__avatar-tooltip hidden">
 							<section class="nav__user__avatar-tooltip__header">
@@ -45,8 +46,9 @@ use \Tools\Helper\UserHelper;
 								<a id="logout-link" class="button outlined-button light" href="<?= RoutesHelper::Path("UserLogoutAdmin"); ?>">Se déconnecter</a>
 							</section>
 						</section>
-					</span>
 <?php endif; ?>
+					</span>
+
 				</section>
 			</nav>
 		</header>

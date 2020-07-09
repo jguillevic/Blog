@@ -14,47 +14,19 @@
         flex-direction: column;
     }
 
-    &__images
+    &__post
     {
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-
-        padding-top: 10em;
-
-        width: 100%;
-
-        & > img
+        &__wrapper
         {
-            width: 12em;
-        }
-    }
+            width: 80%;
 
-    &__title
-    {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        text-align: center;
+            margin-left: auto;
+            margin-right: auto;
 
-        width: 100%;
-
-        &__main
-        {
-            color: $main-dark;
-            font-family: $title-font;
-            font-weight: 700;
-            font-size: 3em;
-
-            margin-bottom: 0.35em;
-        }
-
-        &__secondary
-        {
-            color: $main-dark;
-            font-family: $title-font;
-            font-weight: 400;
-            font-size: 1.2em;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: space-between;
         }
     }
 }

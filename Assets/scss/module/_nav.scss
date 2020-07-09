@@ -23,8 +23,8 @@
 	{
 		color: $secondary-color;
 		font-family: $title-font;
-		font-weight: 600;
-		font-size: 2.5em;
+		font-weight: 500;
+		font-size: 2.8em;
 		letter-spacing: 0.2em;
 
 		text-align: left;
@@ -43,7 +43,10 @@
 		font-weight: 400;
 		font-size: 1.1em;
 
-		padding-top: 0.9em;
+		padding-top: 1.2em;
+
+		margin-left: auto;
+		margin-right: auto;
 
 		&__item
 		{
